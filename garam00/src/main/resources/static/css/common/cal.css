@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .cal-sat {
-	color: #4B89DC;
+    color: #4B89DC;
 }
 
 .cal-sun {
@@ -9,118 +9,118 @@
 }
 
 .cal-sat-no {
-	color: #6fa0e3;
+    color: #6fa0e3;
 }
 
 .cal-sun-no {
-	color: #f0674f;
+    color: #f0674f;
 }
 
 .cal-no {
-	color: #8390A2;
+    color: #8390A2;
 }
 
 .dash-cal {
-	/* 	padding: 1.4rem; */
-	
+    /* 	padding: 1.4rem; */
+
 }
 
 .dash-cal-h {
-	display: flex;
-	justify-content: space-evenly;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .dash-cal-h-item {
-	text-align: center;
-	align-self: center;
+    text-align: center;
+    align-self: center;
 }
 
 .dash-cal-h-item1 {
-	width: 5%;
-	cursor: pointer;
+    width: 5%;
+    cursor: pointer;
 }
 
 .dash-cal-h-item1:hover {
-	background: red;
+    background: red;
 }
 
 .dash-cal-h-item2 {
-	width: 30%;
+    width: 30%;
 }
 
 .dash-cal-h-item3 {
-	width: 5%;
-	cursor: pointer;
+    width: 5%;
+    cursor: pointer;
 }
 
 .dash-cal-h-item3:hover {
-	background: red;
+    background: red;
 }
 
 .dash-cal-con {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-	width: 100%;
-	height: 89%;
-	margin-top: 3%;
-	gap: 0.25rem;
-	margin-top: 3%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 100%;
+    height: 89%;
+    margin-top: 3%;
+    gap: 0.25rem;
+    margin-top: 3%;
 }
 
 .dash-cal-con-item {
-	text-align: center;
-	align-self: center;
-	align-self: start;
-	padding: .3rem;
-	font-weight: bold;
+    text-align: center;
+    align-self: center;
+    align-self: start;
+    padding: 0.3rem;
+    font-weight: bold;
 }
 
 .dash-cal-con-item-c {
-	text-align: center;
-	align-self: center;
-	padding: .9rem;
-	margin-bottom: 0px auto;
-	margin-top: 0px auto;
-	border-radius: .2rem;
-	cursor: pointer;
+    text-align: center;
+    align-self: center;
+    padding: 0.9rem;
+    margin-bottom: 0 auto;
+    margin-top: 0 auto;
+    border-radius: 0.2rem;
+    cursor: pointer;
 }
 
 .dash-cal-con-item-c:hover {
-	background: silver;
+    background: silver;
 }
 
 .dash-cal-con-item-t {
-	text-align: center;
-	align-self: center;
-	padding: .9rem;
-	margin-bottom: 0px auto;
-	margin-top: 0px auto;
-	border-radius: .2rem;
-	cursor: pointer;
-	background: #CF2F11;
+    text-align: center;
+    align-self: center;
+    padding: 0.9rem;
+    margin-bottom: 0 auto;
+    margin-top: 0 auto;
+    border-radius: 0.2rem;
+    cursor: pointer;
+    background: #CF2F11;
 }
 
 .dash-cal-con-item-t:hover {
-	background: silver;
+    background: silver;
 }
 
 .dash-cal-con-item-ed1 {
-	color: #CF2F11;
+    color: #CF2F11;
 }
 
 .dash-cal-con-item-ed2 {
-	color: #CF2F11;
+    color: #CF2F11;
 }
 
 .dash-cal-h-item4 {
-	display: flex;
-	gap: 0.7rem;
+    display: flex;
+    gap: 0.7rem;
 }
 
 #yearMonth {
-	font-size: 1.5rem;
+    font-size: 1.5rem;
 }
 
 #bigDay {
-	font-size: 2rem;
+    font-size: 2rem;
 }
