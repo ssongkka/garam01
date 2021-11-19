@@ -16,7 +16,7 @@
 
 			<div class="login-main col-md-4 col-xs-12">
 				<h2>로그인</h2>
-				<form class="login-form" action="/login" method="post">
+				<form class="login-form" th:action="@{/login}" method="post">
 					<div class="">
 						<label for="username">아이디</label> <input type="text" class="form-control" id="username" name="username" placeholder="아이디를 입력하세요">
 					</div>

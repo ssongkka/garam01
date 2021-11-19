@@ -6,6 +6,63 @@ $(document).ready(function () {
     const nowDay = new Date(now_D.getFullYear(), now_D.getMonth(), now_D.getDate());
 
     const id = setCalendar(nowMonth, nowDay);
+    setCalWhite(id);
+});
+
+$(document).on('click', '#btnYesD', function () {
+
+    var now_D = new Date();
+
+    var nowMonth = new Date(now_D.getFullYear(), now_D.getMonth(), 1);
+    var nowDay = new Date(now_D.getFullYear(), now_D.getMonth(), now_D.getDate());
+    var day = new Date(nowDay.setDate(nowDay.getDate() - 1));
+
+    var id = setCalendar(nowMonth, day);
+
+    setCalWhite(id);
+});
+
+$(document).on('click', '#btnToD', function () {
+
+    var now_D = new Date();
+
+    var nowMonth = new Date(now_D.getFullYear(), now_D.getMonth(), 1);
+    var nowDay = new Date(now_D.getFullYear(), now_D.getMonth(), now_D.getDate());
+
+    var id = setCalendar(nowMonth, nowDay);
+
+    setCalWhite(id);
+});
+
+$(document).on('click', '#btnTomD', function () {
+
+    var now_D = new Date();
+
+    var nowMonth = new Date(now_D.getFullYear(), now_D.getMonth(), 1);
+    var nowDay = new Date(now_D.getFullYear(), now_D.getMonth(), now_D.getDate());
+    var day = new Date(nowDay.setDate(nowDay.getDate() + 1));
+
+    var id = setCalendar(nowMonth, day);
+
+    setCalWhite(id);
+});
+
+$(document).on('click', '#fnDownMonth', function () {
+
+    var now_D = fn_get_Year_Month();
+
+    var downMonth = new Date(now_D.setMonth(now_D.getMonth() - 1));
+
+    setCalendar(downMonth, null);
+});
+
+$(document).on('click', '#fnUpMonth', function () {
+
+    var now_D = fn_get_Year_Month();
+
+    var upMonth = new Date(now_D.setMonth(now_D.getMonth() + 1));
+
+    setCalendar(upMonth, null);
 });
 
 function setCalWhite(e) {
@@ -23,7 +80,7 @@ function setCalWhite(e) {
 
     setBigDay(getDay);
     setMidDay(getDay);
-    // setCaldays(getDay);
+    setCaldays(getDay);
 }
 
 function setBigDay(day) {
@@ -32,11 +89,6 @@ function setBigDay(day) {
     const date = new Date(tmpArr[0], tmpArr[1] + 1, tmpArr[2]);
 
     $('#bigDay').empty();
-
-    console.log(tmpArr[0] + "년 ");
-    console.log(tmpArr[1] + "월 ");
-    console.log(tmpArr[2] + "일 ");
-
     $('#bigDay').prepend(
         tmpArr[0] + "년 " + tmpArr[1] + "월 " + tmpArr[2] + "일 " + getDayOfWeek(date.getDay())
     );
@@ -87,6 +139,79 @@ function setMidDay(day) {
         $(id).empty();
         $(id).prepend(getDayOfWeek(tmp[i]));
     }
+}
+
+function setCaldays(day) {
+
+    const url = "/calendar/event";
+    const headers = {
+        "Content-Type": "application/json",
+        "X-HTTP-Method-Override": "POST"
+    };
+
+    const tmp_Arr = day.split("-");
+
+    const tmp_Day = new Date(tmp_Arr[0], parseInt(tmp_Arr[1] - 1), tmp_Arr[2]);
+
+    const tmp_Day2 = new Date(tmp_Day.setDate(tmp_Day.getDate() + 7));
+
+    const day7 = tmp_Day2.getFullYear() + "-" + (
+        parseInt(tmp_Day2.getMonth()) + 1
+    ) + "-" + tmp_Day2.getDate();
+
+    const params = {
+        "stD": day,
+        "endD": day7
+    };
+
+    let cal1 = "";
+    let cal2 = "";
+
+    $.ajax({
+        url: url,
+        type: "POST",
+        headers: headers,
+        dataType: "json",
+        data: JSON.stringify(params),
+
+        success: function (r) {
+            if (r.length > 0) {
+                cal1 = "음력 " + r[0].lunarCal;
+
+                if (r[0].event != null || r[0].event == "") {
+                    cal2 += '<div>' + r[0].event + '</div>';
+                }
+                if (r[0].holiday != null || r[0].holiday == "") {
+                    cal2 += '<div class = "cal-sun">' + r[0].holiday + '</div>';
+                }
+                if (r[0].anniversary != null || r[0].anniversary == "") {
+                    cal2 += '<div>' + r[0].anniversary + '</div>';
+                }
+                if (r[0].season != null || r[0].season == "") {
+                    cal2 += '<div>' + r[0].season + '</div>';
+                }
+                if (r[0].etc != null || r[0].etc == "") {
+                    cal2 += '<div>' + r[0].etc + '</div>';
+                }
+
+                for (var i = 0; i < 7; i++) {
+                    const id = "#dash-hol-" + String(i);
+                    const id2 = "#dash-week-" + String(i);
+
+                    $(id).empty();
+
+                    if (r[i].holiday == null || r[i].holiday == "") {
+                        $(id).prepend("-");
+                    } else {
+                        $(id).prepend(r[i].holiday);
+                        $(id2).prop('class', 'dash-4-item-1 card-title cal-sun');
+                    }
+                }
+            }
+            $("#cal1").html(cal1);
+            $("#cal2").html(cal2);
+        }
+    });
 }
 
 function getDayOfWeek(num) {

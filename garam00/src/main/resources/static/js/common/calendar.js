@@ -16,6 +16,16 @@ function getCalStD(month) {
     return stD;
 }
 
+function fn_get_Year_Month() {
+    const aaa = $("#yearMonth").text();
+    const now_D = new String(aaa);
+    const year = parseInt(now_D.substring(0, 4));
+    const month = parseInt(now_D.substring(6, 8));
+    const now_Month = new Date(year, month - 1, 1);
+
+    return now_Month;
+}
+
 function setCalendar(now_D, day) {
     let rtn = "";
 
@@ -100,6 +110,67 @@ function setCalendar(now_D, day) {
         }
     }
     $("#dash-cal-contents").html(htmls);
-    // setCalendarHol(dayST, dayED);
+    setCalendarHol(dayST, dayED);
     return rtn;
+}
+
+function setCalendarHol(stD, endD) {
+
+    const url = "/calendar/event";
+    const headers = {
+        "Content-Type": "application/json",
+        "X-HTTP-Method-Override": "POST"
+    };
+    const params = {
+        "stD": stD,
+        "endD": endD
+    };
+
+    $.ajax({
+        url: url,
+        type: "POST",
+        headers: headers,
+        dataType: "json",
+        data: JSON.stringify(params),
+        success: function (r) {
+            var tmpArr = new Array();
+            for (var i = 0; i < r.length; i++) {
+                if (r[i].holiday != null && r[i].holiday != "") {
+                    tmpArr.push(r[i].solarCal);
+                }
+            }
+
+            for (var i = 0; i < r.length; i++) {
+                const calID = "#dash-cal-con-item" + (
+                    i + 1
+                );
+                const aaa = $(calID).find('input');
+                const dayID = "#" + aaa.attr('id');
+                const getDay = $(dayID).val();
+                const tmp = getDay.split("-");
+                const ttmp = tmp[0] + tmp[1] + tmp[2];
+                for (var k = 0; k < tmpArr.length; k++) {
+                    const tmp1 = tmpArr[k].split("-");
+                    let ttmp1 = tmp1[0] + tmp1[1] + tmp1[2];
+                    let ttmpM = "";
+
+                    if (tmp1[1] < 10) {
+                        ttmpM = tmp1[1].substring(1);
+                    } else {
+                        ttmpM = tmp1[1];
+                    }
+
+                    if (tmp1[2] < 10) {
+                        ttmp1 = tmp1[0] + ttmpM + tmp1[2].substring(1);
+                    } else {
+                        ttmp1 = tmp1[0] + ttmpM + tmp1[2];
+                    }
+
+                    if (ttmp == ttmp1) {
+                        $(calID).css('color', '#CF2F11');
+                    }
+                }
+            }
+        }
+    });
 }
