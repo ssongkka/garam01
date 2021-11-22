@@ -73,7 +73,7 @@ function setCalWhite(e) {
         $(dashCal[i]).prop('class', 'dash-cal-con-item-c');
     }
 
-    $(calID).prop('class', 'dash-cal-con-item-t')
+    $(calID).prop('class', 'dash-cal-con-item-c dash-cal-con-item-t')
     const aaa = $(calID).find('input');
     const dayID = "#" + aaa.attr('id');
     const getDay = $(dayID).val();

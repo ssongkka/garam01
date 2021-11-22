@@ -1,7 +1,3 @@
-/**
- *
- */
-
 function getCalStD(month) {
     let now_D = month;
     let now_W;
@@ -94,9 +90,14 @@ function setCalendar(now_D, day) {
             }
         }
 
-        htmls += '><span>' + stD.getDate() + '</span><input type="hidden" id = "calDay' + (
+        htmls += '><div class=""><span>' + stD.getDate() + '</span><input type="hidden" id = "ca' +
+                'lDay' + (
             i + 1
-        ) + '" value="' + days + '" ></div>\n';
+        ) + '" value="' + days + '" ></div>';
+        htmls += '<div class="">';
+        htmls += '&nbsp;';
+        htmls += '</div>';
+        htmls += '</div>';
 
         if (day != null) {
             if (day.toLocaleDateString() == stD.toLocaleDateString()) {

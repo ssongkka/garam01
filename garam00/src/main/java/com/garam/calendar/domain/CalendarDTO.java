@@ -1,4 +1,4 @@
-package com.garam.web.calendar.domain;
+package com.garam.calendar.domain;
 
 import java.time.LocalDate;
 

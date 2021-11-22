@@ -41,6 +41,6 @@ public class DashboardController {
 
 		model.addAttribute("company", companyList.get(ch));
 		model.addAttribute("user", user);
-		return "dashboard/test";
+		return "dashboard/dashboard";
 	}
 }

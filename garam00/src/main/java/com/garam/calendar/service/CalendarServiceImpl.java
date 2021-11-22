@@ -1,4 +1,4 @@
-package com.garam.web.calendar.service;
+package com.garam.calendar.service;
 
 import java.util.Collections;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.garam.web.calendar.domain.CalendarDTO;
-import com.garam.web.calendar.mapper.CalendarMapper;
+import com.garam.calendar.domain.CalendarDTO;
+import com.garam.calendar.mapper.CalendarMapper;
 
 @Service
 public class CalendarServiceImpl implements CalendarService {

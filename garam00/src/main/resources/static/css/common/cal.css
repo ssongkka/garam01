@@ -1,21 +1,24 @@
 @charset "UTF-8";
+:root {
+    --cal-sat: #4B89DC;
+    --cal-sun: #CF2F11;
+    --cal-sat-no: #6fa0e3;
+    --cal-sat-no: #f0674f;
+    --cal-no: #8390A2;
+}
 
 .cal-sat {
     color: #4B89DC;
 }
-
 .cal-sun {
     color: #CF2F11;
 }
-
 .cal-sat-no {
     color: #6fa0e3;
 }
-
-.cal-sun-no {
+.cal-sat-no {
     color: #f0674f;
 }
-
 .cal-no {
     color: #8390A2;
 }
@@ -23,6 +26,9 @@
 .dash-cal {
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .dash-cal-h {
@@ -77,27 +83,38 @@
 }
 
 .dash-cal-con-item-c {
-    text-align: center;
-    align-self: center;
-    padding: 0.9rem;
-    margin-bottom: 0 auto;
-    margin-top: 0 auto;
-    border-radius: 0.2rem;
+    display: flex;
+    justify-content: center;
+
     cursor: pointer;
+    border-radius: 0.2rem;
 }
 
 .dash-cal-con-item-c:hover {
     background: silver;
 }
 
-.dash-cal-con-item-t {
+.dash-cal-con-item-c div {
     text-align: center;
+}
+
+.dash-cal-con-item-c :first-child {
+
+    display: flex;
+    justify-content: center;
     align-self: center;
-    padding: 0.9rem;
-    margin-bottom: 0 auto;
-    margin-top: 0 auto;
-    border-radius: 0.2rem;
-    cursor: pointer;
+    margin-left: 2px;
+}
+
+.dash-cal-con-item-c :last-child {
+
+    align-self: flex-start;
+    /* display: flex;
+    justify-content: center;
+    align-self: center; */
+}
+
+.dash-cal-con-item-t {
     background: #CF2F11;
 }
 

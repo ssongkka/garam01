@@ -1,17 +1,15 @@
-package com.garam.web.calendar.controller;
+package com.garam.calendar.controller;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.garam.web.calendar.domain.CalendarDTO;
-import com.garam.web.calendar.service.CalendarService;
+import com.garam.calendar.domain.CalendarDTO;
+import com.garam.calendar.service.CalendarService;
 
 @RestController
 @RequestMapping(value = "/calendar")
