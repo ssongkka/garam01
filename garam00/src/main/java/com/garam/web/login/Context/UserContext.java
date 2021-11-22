@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-import com.garam.web.admin.entity.PowerRole;
+import com.garam.web.login.entity.PowerRole;
 
 import lombok.Getter;
 
@@ -15,14 +15,17 @@ import lombok.Getter;
 @Getter
 public class UserContext extends User {
 
-	private final com.garam.web.admin.entity.User user;
+	private final com.garam.web.login.entity.User user;
 
-	public UserContext(com.garam.web.admin.entity.User user) {
+	public UserContext(com.garam.web.login.entity.User user) {
 		super(user.getId(), user.getPw(), getAuthorities(user.getPower()));
+
+		System.out.println("하하하핳하하하하하하하하하하하하핳" + getAuthorities(user.getPower()));
+
 		this.user = user;
 	}
 
 	private static Collection<? extends GrantedAuthority> getAuthorities(PowerRole role) {
-		return Collections.singleton(new SimpleGrantedAuthority(Integer.toString(role.getKey())));
+		return Collections.singleton(new SimpleGrantedAuthority(role.getKey()));
 	}
 }

@@ -1,4 +1,4 @@
-package com.garam.web.admin.entity;
+package com.garam.web.login.entity;
 
 import java.util.Optional;
 

@@ -2,8 +2,8 @@ package com.garam.web.admin.dto;
 
 import java.time.LocalDateTime;
 
-import com.garam.web.admin.entity.PowerRole;
-import com.garam.web.admin.entity.User;
+import com.garam.web.login.entity.PowerRole;
+import com.garam.web.login.entity.User;
 
 import lombok.Builder;
 import lombok.Getter;
