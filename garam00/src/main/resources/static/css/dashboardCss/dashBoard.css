@@ -95,22 +95,27 @@ tr {
     background-color: #f9fafd;
 }
 
-.dash-3-item-1 {
+.dash-3-item div {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.dash-item-title {
     font-size: 1.5rem;
     font-weight: bold;
-    padding: 0.5rem 0.5rem 0.5rem 2rem;
+
+    padding: 0.5rem 3rem;
 }
 
 .dash-3-item-2 {
     font-size: 2.3rem;
-    /* 	padding: 8px 6px 6px 30px; */
-    padding: 1rem 0.8rem 0.8rem 2.5rem;
+    padding: 0.8rem 3.5rem 0;
 }
 
 .dash-3-item-3 {
     font-size: 1.5rem;
-    /* 	padding: 0px 8px 8px 20px; */
-    padding: 0 1rem 1rem 2rem;
+    padding: 0 3.5rem 0.8rem;
 }
 
 .dash-4 {
@@ -127,31 +132,23 @@ tr {
 }
 
 .dash-4-item div {
-    text-align: center;
-}
-
-.dash-4-item-1 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .dash-4-item-2 {
+    margin-top: 0.8rem;
     font-size: 2.3rem;
-    /* 	padding: 5px 3px 3px 3px; */
-    padding-top: 0.8rem;
 }
 
 .dash-4-item-3 {
-    font-size: 1rem;
-    padding: 0;
-    height: 100%;
-    flex-grow: 1;
+    font-size: 1.3rem;
 }
 
 .dash-4-item-4 {
-    font-size: 1.3rem;
-    padding: 0.5rem 0.5rem 1rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.6rem;
 }
 
 .dash-5 {
@@ -160,13 +157,6 @@ tr {
     flex-direction: column;
     /* 	text-align: center; */
     background-color: #f9fafd;
-}
-
-.dash-5-item-1 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    /* 	padding: 6px 0px 6px 20px; */
-    padding: 0.5rem 0 0.5rem 2rem;
 }
 
 .dash-5-item-1-main {
@@ -186,13 +176,6 @@ tr {
     /* 	align-items: center; */
     /* 	text-align: center; */
     background-color: #f9fafd;
-}
-
-.dash-6-item-1 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    /* 	padding: 6px 0px 6px 20px; */
-    padding: 0.5rem 0 0.5rem 2rem;
 }
 
 .dash-6-item-2 {
@@ -229,9 +212,9 @@ tr {
 }
 
 .side-R hr {
-	margin: 2rem 0rem 0rem 0rem;
+    margin: 2rem 0 0;
 
-	}
+}
 
 .side-R-item {
     display: flex;
@@ -239,14 +222,19 @@ tr {
 }
 
 .side-R-items1 {
-	padding: 2rem 1rem 2rem 1rem;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .side-R-items2 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap:1rem;
-	padding: 1rem 1rem 2rem 1rem;
+    place-items: center;
+    gap: 1rem;
+    padding: 1rem 1rem 2rem;
 }
 
 .side-R-items:nth-child(1) {}

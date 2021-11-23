@@ -1,3 +1,11 @@
+class dateUtil {
+
+	isSameDay(target1, target2) {
+		return target1.getFullYear() === target2.getFullYear() && target1.getMonth() === target2.getMonth() && target1.getDate() === target2.getDate();
+	}
+
+}
+
 function resize(obj) {
 	obj.style.height = "1px";
 	obj.style.height = (12 + obj.scrollHeight) + "px";
@@ -59,4 +67,3 @@ function getCalTimeInputJSPtoDB(calTime) {
 
 	return rtn_Date + ' ' + rtn_Time;
 }
-
