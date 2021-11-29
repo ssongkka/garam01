@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.garam.web.login.Context.UserContext;
+import com.garam.web.login.context.UserContext;
 import com.garam.web.login.entity.User;
 import com.garam.web.login.entity.UserRepository;
 

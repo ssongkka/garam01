@@ -134,11 +134,3 @@
     display: flex;
     gap: 0.7rem;
 }
-
-#yearMonth {
-    font-size: 1.5rem;
-}
-
-#bigDay {
-    font-size: 2rem;
-}

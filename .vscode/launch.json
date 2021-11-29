@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Garam00Application<garam00>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.garam.Garam00Application",
+            "projectName": "garam00",
+            "args": ""
+        }
+    ]
+}

@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 public class Garam00Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Garam00Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Garam00Application.class, args);
+    }
 }

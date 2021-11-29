@@ -15,7 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.garam.web.login.Context.FormAuthenticationProvider;
+import com.garam.web.login.context.FormAuthenticationProvider;
 import com.garam.web.login.handler.TaskLogoutHandler;
 import com.garam.web.login.service.CustomUserDetailsService;
 

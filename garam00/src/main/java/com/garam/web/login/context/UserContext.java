@@ -1,4 +1,4 @@
-package com.garam.web.login.Context;
+package com.garam.web.login.context;
 
 import java.util.Collection;
 import java.util.Collections;
