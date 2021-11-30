@@ -16,7 +16,7 @@ public class CalendarServiceImpl implements CalendarService {
 	CalendarMapper calendarMapper;
 
 	@Override
-	public List<CalendarDTO> selectCalendarEvent(CalendarDTO calendarDTO) {
+	public List<CalendarDTO> selectCalendarEvent(CalendarDTO calendarDTO) throws Exception {
 		List<CalendarDTO> list = Collections.emptyList();
 
 		list = calendarMapper.selectCalendarEvent(calendarDTO);

@@ -14,10 +14,6 @@
 
     <th:block layout:fragment="main">
         <main class="main">
-            <header class="dd-main-header">
-                <div>asdasd</div>
-            </header>
-
             <div class="tab-pane" role="tabpanel">
                 <!-- Nav tabs -->
                 <ul class="dd-nav card" role="tablist">
@@ -34,207 +30,218 @@
                         <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a>
                     </li>
                 </ul>
-
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="rsvt row tab-pane active" id="rsvt">
                         <div class="rsvt-l card">
-                            <div class="row">
-                                <div class="form-group col-xs-6">
-                                    <i class="fas fa-book-open"></i>
-                                    <label for="name">이름&#42;</label>
-                                    <input
-                                        autocomplete="off"
-                                        type="text"
-                                        list="name-cho"
-                                        class="form-control input-sm"
-                                        id="name"
-                                        name="name"
-                                        placeholder="이름을 입력해주세요.">
-                                    <datalist id="name-cho">
-                                        <option value="다솔지역아동센터" label="010-3123-3355"></option>
-                                    </datalist>
-                                </div>
-                                <div class="form-group col-xs-6">
-                                    <i class="fas fa-phone-alt"></i>
-                                    <label for="tel1">연락처&#42;</label>
-                                    <input
-                                        autocomplete="off"
-                                        type="tel1"
-                                        list="tel1-cho"
-                                        class="form-control input-sm"
-                                        id="tel1"
-                                        name="tel1"
-                                        placeholder="010-0000-0000 형식으로 입력"
-                                        pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
-                                        required="required">
-                                    <datalist id="tel1-cho">
-                                        <option value="다솔지역아동센터" label="010-3123-3355"></option>
-                                    </datalist>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-xs-12 col-lg-6">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <label for="start">출발지</label>
-                                    <input
-                                        autocomplete="off"
-                                        type="text"
-                                        class="form-control input-sm"
-                                        id="start"
-                                        name="start"
-                                        rows="3"
-                                        placeholder="출발지가 고정된 예약자일 경우 입력"></input>
-                                </div>
-                                <div class="form-group col-xs-12 col-lg-6">
-                                    <i class="fas fa-pen"></i>
-                                    <label for="detail">메모</label>
-                                    <input
-                                        autocomplete="off"
-                                        type="text"
-                                        class="form-control input-sm"
-                                        id="detail"
-                                        name="detail"
-                                        rows="3"></input>
-                                </div>
-                            </div>
-                            <div id="user-plus">
+                            <form action="" autocomplete="off">
+                                <input type="hidden" id="custom" value="">
                                 <div class="row">
-                                    <div class="form-group col-xs-6">
+                                    <div class="form-group col-xs-6 col-lg-6">
+                                        <i class="fas fa-book-open"></i>
+                                        <label for="name">이름&#42;</label>
+                                        <input
+                                            type="text"
+                                            list="name-cho"
+                                            class="form-control input-sm"
+                                            id="name"
+                                            name="name"
+                                            placeholder="이름을 입력해주세요.">
+                                        <datalist id="name-cho">
+                                            <option
+                                                th:each="custom : ${customer}"
+                                                th:value="${custom.name}"
+                                                th:label="${custom.tel1}"
+                                                th:data-value="${custom.no}"></option>
+                                        </datalist>
+                                    </div>
+                                    <div class="form-group col-xs-6 col-lg-5">
                                         <i class="fas fa-phone-alt"></i>
-                                        <label for="tel2">비상연락처</label>
+                                        <label for="tel1">연락처&#42;</label>
                                         <input
-                                            autocomplete="off"
-                                            type="tel2"
+                                            type="tel1"
+                                            list="tel1-cho"
                                             class="form-control input-sm"
-                                            id="tel2"
-                                            name="tel2"
-                                            placeholder="010-0000-0000"
+                                            id="tel1"
+                                            name="tel1"
+                                            placeholder="010-0000-0000 형식으로 입력"
+                                            pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
                                             required="required">
+                                        <datalist id="tel1-cho">
+                                            <option
+                                                th:each="custom : ${customer}"
+                                                th:value="${custom.tel1}"
+                                                th:label="${custom.name}"
+                                                th:data-value="${custom.no}"></option>
+                                        </datalist>
+                                    </div>
+                                    <div class="form-group col-xs-1" id="btnUserPlus"></div>
+                                </div>
+                                <div id="user-plus">
+                                    <div class="row">
+                                        <div class="form-group col-xs-12 col-lg-6">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <label for="start">출발지</label>
+                                            <input
+                                                type="text"
+                                                class="form-control input-sm"
+                                                id="start"
+                                                name="start"
+                                                rows="3"
+                                                placeholder="출발지가 고정된 예약자일 경우 입력"></input>
+                                        </div>
+                                        <div class="form-group col-xs-12 col-lg-6">
+                                            <i class="fas fa-pen"></i>
+                                            <label for="detail">메모</label>
+                                            <input
+                                                type="text"
+                                                class="form-control input-sm"
+                                                id="detail"
+                                                name="detail"
+                                                rows="3"></input>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-xs-6">
+                                            <i class="fas fa-phone-alt"></i>
+                                            <label for="tel2">비상연락처</label>
+                                            <input
+                                                type="tel2"
+                                                class="form-control input-sm"
+                                                id="tel2"
+                                                name="tel2"
+                                                placeholder="010-0000-0000"
+                                                required="required">
+                                        </div>
+                                        <div class="form-group col-xs-6">
+                                            <i class="fas fa-fax"></i>
+                                            <label for="fax">팩스</label>
+                                            <input
+                                                type="text"
+                                                class="form-control input-sm"
+                                                id="fax"
+                                                name="fax"
+                                                placeholder="팩스 번호를 입력해주세요.">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-xs-12 col-lg-6">
+                                            <i class="fas fa-map"></i>
+                                            <label for="address">주소</label>
+                                            <input
+                                                type="text"
+                                                class="form-control input-sm"
+                                                id="address"
+                                                name="address"
+                                                placeholder="주소를 입력해주세요.">
+                                        </div>
+                                        <div class="form-group col-xs-12 col-lg-6">
+                                            <i class="fas fa-home"></i>
+                                            <label for="homepage">홈페이지</label>
+                                            <input
+                                                type="text"
+                                                class="form-control input-sm"
+                                                id="homepage"
+                                                name="homepage"
+                                                placeholder="홈페이지 주소를 입력해주세요.">
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="form-group col-xs-6">
+                                        <i class="fas fa-calendar-day"></i>
+                                        <label for="st_day">출발일</label>
+                                        <input type="date" class="form-control input-sm" id="st_day" name="st_day">
                                     </div>
                                     <div class="form-group col-xs-6">
-                                        <i class="fas fa-fax"></i>
-                                        <label for="fax">팩스</label>
+                                        <i class="fas fa-calendar-day"></i>
+                                        <label for="end_day">
+                                            <span>도착일</span><span>(당일)</span></label>
+                                        <input type="date" class="form-control input-sm" id="end_day" name="end_day">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-6">
+                                        <i class="fas fa-bus"></i>
+                                        <label for="bus">차&nbsp;량</label>
+                                        <select id="bus" name="bus" class="form-control input-sm">
+                                            <option value="대형">대형(45인승)</option>
+                                            <option value="중형">중형(25인승)</option>
+                                            <option value="우등">우등(28인승)</option>
+                                            <option value="기타">기타</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-xs-6">
+                                        <i class="fas fa-equals"></i>
+                                        <label for="num">대&nbsp;수</label>
+                                        <select id="num" name="num" class="form-control input-sm">
+                                            <option
+                                                th:each="i : ${#numbers.sequence(1, 50)}"
+                                                th:value="${i}"
+                                                th:text="${i} + '&nbsp;대'">Num</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-6">
+                                        <i class="far fa-clock"></i>
+                                        <label for="startT">출발시간</label>
                                         <input
-                                            autocomplete="off"
-                                            type="text"
+                                            type="time"
                                             class="form-control input-sm"
-                                            id="fax"
-                                            name="fax"
-                                            placeholder="팩스 번호를 입력해주세요.">
+                                            id="startT"
+                                            name="startT"
+                                            value="08:30">
+                                    </div>
+                                    <div class="form-group col-xs-6">
+                                        <i class="far fa-clock"></i>
+                                        <label for="endT">종료시간</label>
+                                        <input
+                                            type="time"
+                                            class="form-control input-sm"
+                                            id="endT"
+                                            name="endT"
+                                            value="08:30">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-xs-12 col-lg-6">
-                                        <i class="fas fa-map"></i>
-                                        <label for="address">주소</label>
-                                        <input
-                                            autocomplete="off"
-                                            type="text"
-                                            class="form-control input-sm"
-                                            id="address"
-                                            name="address"
-                                            placeholder="주소를 입력해주세요.">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <label for="startP">출발장소(모두기입)</label>
+                                        <textarea id="startP" name="startP" class="form-control"></textarea>
                                     </div>
                                     <div class="form-group col-xs-12 col-lg-6">
-                                        <i class="fas fa-home"></i>
-                                        <label for="homepage">홈페이지</label>
-                                        <input
-                                            autocomplete="off"
-                                            type="text"
-                                            class="form-control input-sm"
-                                            id="homepage"
-                                            name="homepage"
-                                            placeholder="홈페이지 주소를 입력해주세요.">
+                                        <i class="fas fa-map-marked-alt"></i>
+                                        <label for="desty">목적지 및 경유지</label>
+                                        <textarea id="desty" name="desty" class="form-control"></textarea>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row" id="btnUserPlus"></div>
-                            <hr>
-                            <div class="row">
-                                <div class="form-group col-xs-6">
-                                    <i class="fas fa-calendar-day"></i>
-                                    <label for="st_day">출발일</label>
-                                    <input type="date" class="form-control input-sm" id="st_day" name="st_day">
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <i class="far fa-bookmark"></i>
+                                        <label for="detail">특이사항</label>
+                                        <input
+                                            type="text"
+                                            class="form-control input-sm"
+                                            id="detail"
+                                            name="detail"
+                                            placeholder="특이사항을 입력해주세요.">
+                                    </div>
                                 </div>
-                                <div class="form-group col-xs-6">
-                                    <i class="fas fa-calendar-day"></i>
-                                    <label for="end_day">도착일</label>
-                                    <input type="date" class="form-control input-sm" id="end_day" name="end_day">
+                                <div class="row">
+                                    <div class="col-xs-12 form-flex">
+                                        <div>
+                                            <label>
+                                                <input type="checkbox" checked="checked">
+                                                고객정보를 저장합니다.
+                                            </label>
+                                        </div>
+                                        <button type="button" class="btn btn-primary rsvt-btn">지우기</button>
+                                        <button type="submit" class="btn btn-default rsvt-btn">입력</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-xs-6">
-                                    <i class="fas fa-bus"></i>
-                                    <label for="bus">차&nbsp;량</label>
-                                    <select id="bus" name="bus" class="form-control input-sm">
-                                        <option value="대형">대형(45인승)</option>
-                                        <option value="중형">중형(25인승)</option>
-                                        <option value="우등">우등(28인승)</option>
-                                        <option value="기타">기타()</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-xs-6">
-                                    <i class="fas fa-equals"></i>
-                                    <label for="num">대&nbsp;수</label>
-                                    <select id="num" name="num" class="form-control input-sm">
-                                        <option
-                                            th:each="i : ${#numbers.sequence(1, 50)}"
-                                            th:value="${i}"
-                                            th:text="${i} + '&nbsp;대'">Num</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-xs-6">
-                                    <i class="far fa-clock"></i>
-                                    <label for="startT">출발시간</label>
-                                    <input
-                                        type="time"
-                                        class="form-control input-sm"
-                                        id="startT"
-                                        name="startT"
-                                        value="08:30">
-                                </div>
-                                <div class="form-group col-xs-6">
-                                    <i class="far fa-clock"></i>
-                                    <label for="endT">종료시간</label>
-                                    <input
-                                        type="time"
-                                        class="form-control input-sm"
-                                        id="endT"
-                                        name="endT"
-                                        value="08:30">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-xs-12 col-lg-6">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <label for="startP">출발장소(모두기입)</label>
-                                    <textarea id="startP" name="startP" class="form-control"></textarea>
-                                </div>
-                                <div class="form-group col-xs-12 col-lg-6">
-                                    <i class="fas fa-map-marked-alt"></i>
-                                    <label for="desty">목적지 및 경유지</label>
-                                    <textarea id="desty" name="desty" class="form-control"></textarea>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-xs-12">
-                                    <i class="far fa-bookmark"></i>
-                                    <label for="detail">특이사항</label>
-                                    <input
-                                        autocomplete="off"
-                                        type="text"
-                                        class="form-control input-sm"
-                                        id="detail"
-                                        name="detail"
-                                        placeholder="특이사항을 입력해주세요.">
-                                </div>
-                            </div>
-                            <div class="row plus-bus">
-                                <a class="fas fa-minus-circle BaseButton--skinGray col-xs-12 plus-btn">&nbsp;추가입력</a>
-                            </div>
+                            </form>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="allo">55555</div>
