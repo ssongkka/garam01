@@ -23,14 +23,10 @@ $(document).on('click', '#btnUserPlus', function () {
 
 function setCalWhite(e) {
 
-    console.log(e);
     const day = calen_Rsvt.setCalclss(e);
-    console.log(day);
 
-    console.log($('#st_day').val());
-
-    $('#st_day').val(day);
-    $('#end_day').val(day);
+    $('#stday').val(day);
+    $('#endday').val(day);
     this.setBigDay(day);
     this.setCaldays(day);
 }
@@ -115,7 +111,7 @@ $(document).on('change', '#name', function () {
     };
 
     const params = {
-        "no": idNum
+        "ctmseq": idNum
     };
     console.log(params);
     $.ajax({
@@ -142,6 +138,7 @@ $(document).on('change', '#name', function () {
             $('#fax').val(r[0].fax);
             $('#address').val(r[0].address);
             $('#homepage').val(r[0].tehomepagel1);
+            $('#custom').val(r[0].ctmseq);
         }
     });
 });
@@ -188,6 +185,90 @@ $(document).on('change', '#tel1', function () {
             $('#fax').val(r[0].fax);
             $('#address').val(r[0].address);
             $('#homepage').val(r[0].tehomepagel1);
+            $('#custom').val(r[0].ctmseq);
         }
     });
+});
+
+$(document).on('click', '#eraser', function () {
+
+    if (confirm('입력 내용을 지우시겠습니까?')) {
+        $('#custom').val('');
+        $('#name').val('');
+        $('#tel1').val('');
+        $('#start').val('');
+        $('#startP').val('');
+        $('#detail').val('');
+        $('#tel2').val('');
+        $('#fax').val('');
+        $('#address').val('');
+        $('#homepage').val('');
+
+        const aaa = document.getElementsByClassName('dash-cal-con-item-t');
+        const bbb = aaa[0].getElementsByTagName('div')[0];
+        const ccc = bbb.childNodes[1];
+        const ddd = ccc.value;
+
+        $('#rsvt').val('');
+        $('#ctmseq').val('');
+        $('#empin').val('');
+
+        $('#stday').val(ddd);
+        $('#endday').val(ddd);
+
+        $('#startT').val('08:30');
+        $('#endT').val('08:30');
+
+        $('#bus').val('대형');
+        $('#num').val('1');
+
+        $('#startP').val('');
+        $('#desty').val('');
+        $('#detail').val('');
+        $('#cont').val('포함');
+        $('#conm').val('');
+    }
+});
+
+$(document).on('click', '#insert-rsvt', function () {
+
+    if (confirm('입력 내용을 지우시겠습니까?')) {
+        console.log("custom  " + $('#custom').val());
+
+        console.log("name  " + $('#name').val());
+        console.log("tel1  " + $('#tel1').val());
+        console.log("start  " + $('#start').val());
+        console.log("startP  " + $('#startP').val());
+        console.log("detail  " + $('#detail').val());
+        console.log("tel2  " + $('#tel2').val());
+        console.log("fax  " + $('#fax').val());
+        console.log("address  " + $('#address').val());
+        console.log("homepage  " + $('#homepage').val());
+
+        console.log("rsvt  " + $('#rsvt').val());
+        console.log("ctmseq  " + $('#ctmseq').val());
+        console.log("empin  " + $('#empin').val());
+
+        console.log("stday  " + $('#stday').val());
+        console.log("endday  " + $('#endday').val());
+        console.log("bus  " + $('#bus').val());
+        console.log("num  " + $('#num').val());
+        console.log("startT  " + $('#startT').val());
+        console.log("endT  " + $('#endT').val());
+        console.log("startP  " + $('#startP').val());
+        console.log("desty  " + $('#desty').val());
+        console.log("detail  " + $('#detail').val());
+        console.log("cont  " + $('#cont').val());
+        console.log("conm  " + $('#conm').val());
+
+        console.log(now());
+
+        // $('#name').val(''); $('#tel1').val(''); $('#start').val('');
+        // $('#startP').val(''); $('#detail').val(''); $('#tel2').val('');
+        // $('#fax').val(''); $('#address').val(''); $('#homepage').val('');
+        // $('#custom').val(''); $('#stday').val(ddd); $('#endday').val(ddd);
+        // $('#startT').val('08:30'); $('#endT').val('08:30'); $('#bus').val('대형');
+        // $('#num').val('1'); $('#startP').val(''); $('#desty').val('');
+        // $('#detail').val(''); $('#num').val('포함'); $('#conm').val('');
+    }
 });

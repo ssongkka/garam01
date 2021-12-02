@@ -7,6 +7,14 @@
     padding: 1rem 10rem;
 }
 
+.rsvt hr {
+    margin: 1rem 0;
+}
+
+.rsvt h3 {
+    margin: 0 0 2rem;
+}
+
 .rsvt i {
     background: #346cb024;
     color: #346CB0;
@@ -73,7 +81,11 @@
 
 .rsvt-btn {
     width: 10rem;
-    padding: 0.8rem 0;
+}
+
+.rsvt-hd {
+    font-size: 2rem;
+    padding-bottom: 2rem;
 }
 
 @media (max-width:768px) {

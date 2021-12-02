@@ -35,7 +35,10 @@
                     <div role="tabpanel" class="rsvt row tab-pane active" id="rsvt">
                         <div class="rsvt-l card">
                             <form action="" autocomplete="off">
-                                <input type="hidden" id="custom" value="">
+                                <h3>고객 정보
+                                    <small>고객 정보 확인 후 새로입력해주세요.</small>
+                                </h3>
+                                <input type="hidden" id="custom" value="0">
                                 <div class="row">
                                     <div class="form-group col-xs-6 col-lg-6">
                                         <i class="fas fa-book-open"></i>
@@ -52,7 +55,7 @@
                                                 th:each="custom : ${customer}"
                                                 th:value="${custom.name}"
                                                 th:label="${custom.tel1}"
-                                                th:data-value="${custom.no}"></option>
+                                                th:data-value="${custom.ctmseq}"></option>
                                         </datalist>
                                     </div>
                                     <div class="form-group col-xs-6 col-lg-5">
@@ -72,10 +75,10 @@
                                                 th:each="custom : ${customer}"
                                                 th:value="${custom.tel1}"
                                                 th:label="${custom.name}"
-                                                th:data-value="${custom.no}"></option>
+                                                th:data-value="${custom.ctmseq}"></option>
                                         </datalist>
                                     </div>
-                                    <div class="form-group col-xs-1" id="btnUserPlus"></div>
+                                    <div class="form-group col-xs-12 col-lg-1" id="btnUserPlus"></div>
                                 </div>
                                 <div id="user-plus">
                                     <div class="row">
@@ -147,18 +150,29 @@
                                         </div>
                                     </div>
                                 </div>
-                                <hr>
+                            </form>
+                            <hr>
+                            <form action="" autocomplete="off">
+                                <h3>운행 내용
+                                    <small>Secondary text</small>
+                                </h3>
                                 <div class="row">
+                                    <input type="hidden" id="rsvt" value="">
+                                    <input type="hidden" id="ctmseq" value="0">
+                                    <input
+                                        type="hidden"
+                                        id="empin"
+                                        th:value="${user.position}+'&nbsp;'+${user.name}">
                                     <div class="form-group col-xs-6">
                                         <i class="fas fa-calendar-day"></i>
-                                        <label for="st_day">출발일</label>
-                                        <input type="date" class="form-control input-sm" id="st_day" name="st_day">
+                                        <label for="stday">출발일</label>
+                                        <input type="date" class="form-control input-sm" id="stday" name="stday">
                                     </div>
                                     <div class="form-group col-xs-6">
                                         <i class="fas fa-calendar-day"></i>
-                                        <label for="end_day">
+                                        <label for="endday">
                                             <span>도착일</span><span>(당일)</span></label>
-                                        <input type="date" class="form-control input-sm" id="end_day" name="end_day">
+                                        <input type="date" class="form-control input-sm" id="endday" name="endday">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -230,6 +244,29 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="form-group col-xs-6">
+                                        <i class="fas fa-calculator"></i>
+                                        <label for="cont">부가세</label>
+                                        <select id="cont" name="cont" class="form-control input-sm">
+                                            <option value="포함">포함</option>
+                                            <option value="미포함">미포함</option>
+                                            <option value="카드">카드</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-xs-6">
+                                        <i class="fas fa-won-sign"></i>
+                                        <label for="conm">운행금액</label>
+                                        <input
+                                            type="text"
+                                            name="conm"
+                                            id="conm"
+                                            pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+                                            data-type="currency"
+                                            class="form-control input-sm"
+                                            placeholder="운행 금액 입력">
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 3rem;">
                                     <div class="col-xs-12 form-flex">
                                         <div>
                                             <label>
@@ -237,8 +274,9 @@
                                                 고객정보를 저장합니다.
                                             </label>
                                         </div>
-                                        <button type="button" class="btn btn-primary rsvt-btn">지우기</button>
-                                        <button type="submit" class="btn btn-default rsvt-btn">입력</button>
+
+                                        <button type="button" class="btn btn-secondary btn-sm rsvt-btn" id="eraser">지우기</button>
+                                        <button type="button" class="btn btn-primary btn-sm rsvt-btn" id="insert-rsvt">입&nbsp;&nbsp;력</button>
                                     </div>
                                 </div>
                             </form>
@@ -249,7 +287,6 @@
                     <div role="tabpanel" class="tab-pane" id="settings">77777</div>
                 </div>
             </div>
-
         </div>
     </div>
 </main>

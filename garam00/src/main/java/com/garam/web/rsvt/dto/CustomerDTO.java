@@ -2,7 +2,7 @@ package com.garam.web.rsvt.dto;
 
 public class CustomerDTO {
 
-	private Integer no;
+	private Integer ctmseq;
 
 	private Integer sepa;
 
@@ -24,12 +24,12 @@ public class CustomerDTO {
 
 	private Integer trash;
 
-	public Integer getNo() {
-		return no;
+	public Integer getCtmseq() {
+		return ctmseq;
 	}
 
-	public void setNo(Integer no) {
-		this.no = no;
+	public void setCtmseq(Integer ctmseq) {
+		this.ctmseq = ctmseq;
 	}
 
 	public Integer getSepa() {
@@ -114,13 +114,14 @@ public class CustomerDTO {
 
 	@Override
 	public String toString() {
-		return "CustomerDTO [no=" + no + ", sepa=" + sepa + ", name=" + name + ", address=" + address + ", tel1=" + tel1
-				+ ", tel2=" + tel2 + ", fax=" + fax + ", homepage=" + homepage + ", start=" + start + ", detail="
-				+ detail + ", trash=" + trash + ", getNo()=" + getNo() + ", getSepa()=" + getSepa() + ", getName()="
-				+ getName() + ", getAddress()=" + getAddress() + ", getTel1()=" + getTel1() + ", getTel2()=" + getTel2()
-				+ ", getFax()=" + getFax() + ", getHomepage()=" + getHomepage() + ", getStart()=" + getStart()
-				+ ", getDetail()=" + getDetail() + ", getTrash()=" + getTrash() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+		return "CustomerDTO [ctmseq=" + ctmseq + ", sepa=" + sepa + ", name=" + name + ", address=" + address
+				+ ", tel1=" + tel1 + ", tel2=" + tel2 + ", fax=" + fax + ", homepage=" + homepage + ", start=" + start
+				+ ", detail=" + detail + ", trash=" + trash + ", getCtmseq()=" + getCtmseq() + ", getSepa()="
+				+ getSepa() + ", getName()=" + getName() + ", getAddress()=" + getAddress() + ", getTel1()=" + getTel1()
+				+ ", getTel2()=" + getTel2() + ", getFax()=" + getFax() + ", getHomepage()=" + getHomepage()
+				+ ", getStart()=" + getStart() + ", getDetail()=" + getDetail() + ", getTrash()=" + getTrash()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
 
 }
