@@ -30,6 +30,10 @@
     padding: 5rem 15rem;
 }
 
+.rsvt-l small {
+    margin-left: 2rem;
+}
+
 .rsvt-title {
     display: flex;
     align-items: center;

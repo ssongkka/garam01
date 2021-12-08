@@ -10,6 +10,7 @@
 
     <th:block layout:fragment="add-css">
         <link rel="stylesheet" href="/css/rsvtCss/rsvtMain.css">
+        <link rel="stylesheet" href="/css/rsvtCss/rsvtAllo.css">
     </th:block>
 
     <th:block layout:fragment="main">
@@ -18,7 +19,7 @@
                 <!-- Nav tabs -->
                 <ul class="dd-nav card" role="tablist">
                     <li role="presentation" class="active">
-                        <a href="#rsvt" aria-controls="rsvt" role="tab" data-toggle="tab">예약확인</a>
+                        <a href="#rsvt" aria-controls="rsvt" role="tab" data-toggle="tab">확인</a>
                     </li>
                     <li role="presentation">
                         <a href="#allo" aria-controls="allo" role="tab" data-toggle="tab">배차관리</a>
@@ -32,147 +33,187 @@
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div role="tabpanel" class="rsvt row tab-pane active" id="rsvt">
+                    <div role="tabpanel" class="rsvt row tab-pane" id="rsvt">
                         <div class="rsvt-l card">
-                            <form action="" autocomplete="off">
+                            <!-- <form th:action="@{/rsvt/rsvtregister}" method="post" autocomplete="off">
+                            -->
+                            <form
+                                action="/rsvt/rsvtregister"
+                                name="formRsvt"
+                                th:action="@{/rsvt/rsvtregister}"
+                                method="post"
+                                autocomplete="off">
                                 <h3>고객 정보
-                                    <small>고객 정보 확인 후 새로입력해주세요.</small>
+                                    <small>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="ctmsepa" id="radio0" value="0" checked="checked">
+                                            일반
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="ctmsepa" id="radio1" value="1">
+                                            학단
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="ctmsepa" id="radio2" value="2">
+                                            거래처
+                                        </label>
+                                    </small>
                                 </h3>
-                                <input type="hidden" id="custom" value="0">
+                                <input type="hidden" id="ctmseq" name="ctmseq" value="0">
                                 <div class="row">
-                                    <div class="form-group col-xs-6 col-lg-6">
+                                    <div class="form-group col-xs-5">
                                         <i class="fas fa-book-open"></i>
-                                        <label for="name">이름&#42;</label>
+                                        <label for="ctmname">이름&#42;</label>
                                         <input
                                             type="text"
                                             list="name-cho"
                                             class="form-control input-sm"
-                                            id="name"
-                                            name="name"
-                                            placeholder="이름을 입력해주세요.">
+                                            id="ctmname"
+                                            name="ctmname"
+                                            placeholder="이름을 입력해주세요."
+                                            value=""
+                                            required="required">
                                         <datalist id="name-cho">
                                             <option
                                                 th:each="custom : ${customer}"
-                                                th:value="${custom.name}"
-                                                th:label="${custom.tel1}"
+                                                th:value="${custom.ctmname}"
+                                                th:label="${custom.ctmtel1}"
                                                 th:data-value="${custom.ctmseq}"></option>
+
                                         </datalist>
                                     </div>
-                                    <div class="form-group col-xs-6 col-lg-5">
+                                    <div class="form-group col-xs-1" id="">
+                                        <a
+                                            id="ername"
+                                            class="fas fa-times-circle BaseButton--skinGray size_default col-xs-12 plus-btn"
+                                            data-toggle="tooltip"
+                                            data-placement="bottom"
+                                            data-trigger="hover"
+                                            title="고객정보 지우기"></a>
+                                    </div>
+                                    <div class="form-group col-xs-5">
                                         <i class="fas fa-phone-alt"></i>
                                         <label for="tel1">연락처&#42;</label>
                                         <input
-                                            type="tel1"
+                                            type="ctmtel1"
                                             list="tel1-cho"
                                             class="form-control input-sm"
-                                            id="tel1"
-                                            name="tel1"
-                                            placeholder="010-0000-0000 형식으로 입력"
-                                            pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+                                            id="ctmtel1"
+                                            name="ctmtel1"
+                                            placeholder="전화번호 형식으로 입력"
+                                            value=""
                                             required="required">
-                                        <datalist id="tel1-cho">
-                                            <option
-                                                th:each="custom : ${customer}"
-                                                th:value="${custom.tel1}"
-                                                th:label="${custom.name}"
-                                                th:data-value="${custom.ctmseq}"></option>
-                                        </datalist>
+                                        <datalist id="tel1-cho"></datalist>
                                     </div>
-                                    <div class="form-group col-xs-12 col-lg-1" id="btnUserPlus"></div>
+                                    <div class="form-group col-xs-1" id="btnUserPlus">
+                                        <a
+                                            id="userPlus"
+                                            class="fas fa-plus-circle BaseButton--skinGray size_default col-xs-12 plus-btn"
+                                            data-toggle="tooltip"
+                                            data-placement="bottom"
+                                            title="고객정보 지우기"></a>
+                                    </div>
                                 </div>
                                 <div id="user-plus">
                                     <div class="row">
                                         <div class="form-group col-xs-12 col-lg-6">
                                             <i class="fas fa-map-marker-alt"></i>
-                                            <label for="start">출발지</label>
+                                            <label for="ctmstp">출발지</label>
                                             <input
                                                 type="text"
                                                 class="form-control input-sm"
-                                                id="start"
-                                                name="start"
+                                                id="ctmstp"
+                                                name="ctmstp"
                                                 rows="3"
                                                 placeholder="출발지가 고정된 예약자일 경우 입력"></input>
                                         </div>
                                         <div class="form-group col-xs-12 col-lg-6">
                                             <i class="fas fa-pen"></i>
-                                            <label for="detail">메모</label>
+                                            <label for="ctmdetail">메모</label>
                                             <input
                                                 type="text"
                                                 class="form-control input-sm"
-                                                id="detail"
-                                                name="detail"
+                                                id="ctmdetail"
+                                                name="ctmdetail"
                                                 rows="3"></input>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-xs-6">
                                             <i class="fas fa-phone-alt"></i>
-                                            <label for="tel2">비상연락처</label>
-                                            <input
-                                                type="tel2"
-                                                class="form-control input-sm"
-                                                id="tel2"
-                                                name="tel2"
-                                                placeholder="010-0000-0000"
-                                                required="required">
-                                        </div>
-                                        <div class="form-group col-xs-6">
-                                            <i class="fas fa-fax"></i>
-                                            <label for="fax">팩스</label>
+                                            <label for="ctmtel2">비상연락처</label>
                                             <input
                                                 type="text"
                                                 class="form-control input-sm"
-                                                id="fax"
-                                                name="fax"
+                                                id="ctmtel2"
+                                                name="ctmtel2"
+                                                placeholder="010-0000-0000">
+                                        </div>
+                                        <div class="form-group col-xs-6">
+                                            <i class="fas fa-fax"></i>
+                                            <label for="ctmfax">팩스</label>
+                                            <input
+                                                type="text"
+                                                class="form-control input-sm"
+                                                id="ctmfax"
+                                                name="ctmfax"
                                                 placeholder="팩스 번호를 입력해주세요.">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-xs-12 col-lg-6">
                                             <i class="fas fa-map"></i>
-                                            <label for="address">주소</label>
+                                            <label for="ctmaddress">주소</label>
                                             <input
                                                 type="text"
                                                 class="form-control input-sm"
-                                                id="address"
-                                                name="address"
+                                                id="ctmaddress"
+                                                name="ctmaddress"
                                                 placeholder="주소를 입력해주세요.">
                                         </div>
                                         <div class="form-group col-xs-12 col-lg-6">
                                             <i class="fas fa-home"></i>
-                                            <label for="homepage">홈페이지</label>
+                                            <label for="ctmhomepage">홈페이지</label>
                                             <input
                                                 type="text"
                                                 class="form-control input-sm"
-                                                id="homepage"
-                                                name="homepage"
+                                                id="ctmhomepage"
+                                                name="ctmhomepage"
                                                 placeholder="홈페이지 주소를 입력해주세요.">
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                            <hr>
-                            <form action="" autocomplete="off">
+                                <hr>
                                 <h3>운행 내용
                                     <small>Secondary text</small>
                                 </h3>
                                 <div class="row">
-                                    <input type="hidden" id="rsvt" value="">
-                                    <input type="hidden" id="ctmseq" value="0">
+                                    <input type="hidden" id="rsvt" name="rsvt" value="">
                                     <input
                                         type="hidden"
                                         id="empin"
+                                        name="empin"
                                         th:value="${user.position}+'&nbsp;'+${user.name}">
                                     <div class="form-group col-xs-6">
                                         <i class="fas fa-calendar-day"></i>
                                         <label for="stday">출발일</label>
-                                        <input type="date" class="form-control input-sm" id="stday" name="stday">
+                                        <input
+                                            type="date"
+                                            class="form-control input-sm"
+                                            id="stday"
+                                            name="stday"
+                                            required="required">
                                     </div>
                                     <div class="form-group col-xs-6">
                                         <i class="fas fa-calendar-day"></i>
                                         <label for="endday">
-                                            <span>도착일</span><span>(당일)</span></label>
-                                        <input type="date" class="form-control input-sm" id="endday" name="endday">
+                                            <span>도착일</span><span id="daynight">(당일)</span></label>
+                                        <input
+                                            type="date"
+                                            class="form-control input-sm"
+                                            id="endday"
+                                            name="endday"
+                                            required="required">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -200,30 +241,30 @@
                                 <div class="row">
                                     <div class="form-group col-xs-6">
                                         <i class="far fa-clock"></i>
-                                        <label for="startT">출발시간</label>
+                                        <label for="stt">출발시간</label>
                                         <input
                                             type="time"
                                             class="form-control input-sm"
-                                            id="startT"
-                                            name="startT"
+                                            id="stt"
+                                            name="stt"
                                             value="08:30">
                                     </div>
                                     <div class="form-group col-xs-6">
                                         <i class="far fa-clock"></i>
-                                        <label for="endT">종료시간</label>
+                                        <label for="endt">종료시간</label>
                                         <input
                                             type="time"
                                             class="form-control input-sm"
-                                            id="endT"
-                                            name="endT"
+                                            id="endt"
+                                            name="endt"
                                             value="08:30">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-xs-12 col-lg-6">
                                         <i class="fas fa-map-marker-alt"></i>
-                                        <label for="startP">출발장소(모두기입)</label>
-                                        <textarea id="startP" name="startP" class="form-control"></textarea>
+                                        <label for="rsvpstp">출발장소(모두기입)</label>
+                                        <textarea id="rsvpstp" name="rsvpstp" class="form-control"></textarea>
                                     </div>
                                     <div class="form-group col-xs-12 col-lg-6">
                                         <i class="fas fa-map-marked-alt"></i>
@@ -234,12 +275,12 @@
                                 <div class="row">
                                     <div class="form-group col-xs-12">
                                         <i class="far fa-bookmark"></i>
-                                        <label for="detail">특이사항</label>
+                                        <label for="rsvtdetail">특이사항</label>
                                         <input
                                             type="text"
                                             class="form-control input-sm"
-                                            id="detail"
-                                            name="detail"
+                                            id="rsvtdetail"
+                                            name="rsvtdetail"
                                             placeholder="특이사항을 입력해주세요.">
                                     </div>
                                 </div>
@@ -256,11 +297,10 @@
                                     <div class="form-group col-xs-6">
                                         <i class="fas fa-won-sign"></i>
                                         <label for="conm">운행금액</label>
+                                        <input type="hidden" name="conm" id="conm" class="form-control input-sm">
                                         <input
                                             type="text"
-                                            name="conm"
-                                            id="conm"
-                                            pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+                                            id="conm2"
                                             data-type="currency"
                                             class="form-control input-sm"
                                             placeholder="운행 금액 입력">
@@ -268,12 +308,6 @@
                                 </div>
                                 <div class="row" style="margin-top: 3rem;">
                                     <div class="col-xs-12 form-flex">
-                                        <div>
-                                            <label>
-                                                <input type="checkbox" checked="checked">
-                                                고객정보를 저장합니다.
-                                            </label>
-                                        </div>
 
                                         <button type="button" class="btn btn-secondary btn-sm rsvt-btn" id="eraser">지우기</button>
                                         <button type="button" class="btn btn-primary btn-sm rsvt-btn" id="insert-rsvt">입&nbsp;&nbsp;력</button>
@@ -282,7 +316,454 @@
                             </form>
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="allo">55555</div>
+                    <div role="tabpanel" class="tab-pane active" id="allo">
+                        <div class="allo">
+                            <div class="allo-main">
+                                <div class="allo-detail-item" id="onewayBtn">
+                                    <a>편도</a>
+                                </div>
+                                <div class="card allo-card">
+                                    <div>
+                                        <h4>시곡초등학교
+                                            <small>010-3123-3355</small>
+                                        </h4>
+                                    </div>
+                                    <hr>
+                                    <div class="card allo-card-in">
+                                        <div class="allo-detail">
+                                            <div class="allo-detail-item">
+                                                <blockquote>
+                                                    <p>학생문화회관</p>
+                                                </blockquote>
+                                            </div>
+                                            <div class="allo-detail-item">
+                                                <small>학교 앞</small>
+                                            </div>
+                                            <div class="allo-detail-item">
+                                                <small>08:30 / 18:30</small>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="allo-allo form-group">
+                                            <div class="allo-allo-item col-xs-6 col-lg-3">
+                                                <div class="stWay">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                                <div class="edway" style="display: none;">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                            </div>
+                                            <div class="allo-allo-item col-xs-6 col-lg-3">
+                                                <div class="stWay">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                                <div class="edway" style="display: none;">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                            </div>
+                                            <div class="allo-allo-item col-xs-6 col-lg-3">
+                                                <div class="stWay">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                                <div class="edway" style="display: none;">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                            </div>
+                                            <div class="allo-allo-item col-xs-6 col-lg-3">
+                                                <div class="stWay">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                                <div class="edway" style="display: none;">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                            </div>
+                                            <div class="allo-allo-item col-xs-6 col-lg-3">
+                                                <div class="stWay">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                                <div class="edway" style="display: none;">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                            </div>
+                                            <div class="allo-allo-item col-xs-6 col-lg-3">
+                                                <div class="stWay">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                                <div class="edway" style="display: none;">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                            </div>
+                                            <div class="allo-allo-item col-xs-6 col-lg-3">
+                                                <div class="stWay">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                                <div class="edway" style="display: none;">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                            </div>
+                                            <div class="allo-allo-item col-xs-6 col-lg-3">
+                                                <div class="stWay">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                                <div class="edway" style="display: none;">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                            </div>
+                                            <div class="allo-allo-item col-xs-6 col-lg-3">
+                                                <div class="stWay">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                                <div class="edway" style="display: none;">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                            </div>
+                                            <div class="allo-allo-item col-xs-6 col-lg-3">
+                                                <div class="stWay">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                                <div class="edway" style="display: none;">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                            </div>
+                                            <div class="allo-allo-item col-xs-6 col-lg-3">
+                                                <div class="stWay">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                                <div class="edway" style="display: none;">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                            </div>
+                                            <div class="allo-allo-item col-xs-6 col-lg-3">
+                                                <div class="stWay">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                                <div class="edway" style="display: none;">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                            </div>
+                                            <div class="allo-allo-item col-xs-6 col-lg-3">
+                                                <div class="stWay">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                                <div class="edway" style="display: none;">
+                                                    <input
+                                                        type="text"
+                                                        list="car-info"
+                                                        class="form-control"
+                                                        tabindex="1"
+                                                        placeholder="1호차">
+                                                    <input
+                                                        type="text"
+                                                        list="per-info"
+                                                        class="form-control"
+                                                        tabindex="2"
+                                                        placeholder="승무원">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <datalist id="car-info">
+                                    <option value="1234" label="44인"></option>
+                                    <option value="2334" label="44인"></option>
+                                    <option value="4432" label="44인"></option>
+                                    <option value="5523" label="44인"></option>
+                                    <option value="4232" label="44인"></option>
+                                    <option value="5123" label="44인"></option>
+                                    <option value="9575" label="44인"></option>
+                                    <option value="4221" label="44인"></option>
+                                    <option value="4532" label="44인"></option>
+                                    <option value="5334" label="44인"></option>
+                                    <option value="1134" label="44인"></option>
+                                    <option value="3543" label="44인"></option>
+                                    <option value="타회사" label=""></option>
+                                </datalist>
+                                <datalist id="per-info">
+                                    <option value="홍길동" label="44인"></option>
+                                    <option value="김길동" label="44인"></option>
+                                    <option value="차길동" label="44인"></option>
+                                </datalist>
+                            </div>
+                            <div class="allo-side">
+                                asdasdasd
+                            </div>
+                        </div>
+                    </div>
                     <div role="tabpanel" class="tab-pane" id="manage">6666</div>
                     <div role="tabpanel" class="tab-pane" id="settings">77777</div>
                 </div>
@@ -294,4 +775,5 @@
 
 <th:block layout:fragment="add-script">
 <script src="/js/rsvt/rsvtMain.js"></script>
+<script src="/js/rsvt/rsvtAllo.js"></script>
 </th:block>

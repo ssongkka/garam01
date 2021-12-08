@@ -1,3 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mappers.rsvt.RsvtMapper"></mapper>
+<mapper namespace="com.garam.web.rsvt.mapper.RsvtMapper">
+
+	<sql id="customerColumns">
+		ctmseq , ctmsepa , ctmname , ctmaddress , ctmtel1 , ctmtel2 , ctmfax , ctmhomepage , ctmstp , ctmdetail ,
+		ctmtrash
+	</sql>
+	<sql id="rsvtColumns">
+		rsvtseq, rsvt, ctmseq, datein, datech, empin, stday, endday, bus, num, desty, rsvpstp, stt, endt, rsvtdetail, cont, conm, confirm,
+		rsvttrash
+	</sql>
+
+	<select id="selectCustomerAll" resultType="com.garam.web.rsvt.dto.RsvtDTO">
+		SELECT
+
+		<include refid="customerColumns" />
+
+		FROM customer WHERE ctmtrash = 1;
+	</select>
+
+	<select id="selectCustomerName" parameterType="com.garam.web.rsvt.dto.RsvtDTO" resultType="com.garam.web.rsvt.dto.RsvtDTO">
+		SELECT
+
+		<include refid="customerColumns" />
+
+		FROM customer
+
+		<where>
+			<if test="ctmseq > 0">AND ctmseq = #{ctmseq}
+			</if>
+			<if test="ctmname != null">AND ctmname = #{ctmname}
+			</if>
+			<if test="ctmsepa > 0">AND ctmsepa = #{ctmsepa}
+			</if>
+		</where>
+	</select>
+
+	<insert id="insertRsvt" parameterType="com.garam.web.rsvt.dto.RsvtDTO">
+
+		<choose>
+			<when test='ctmseq > 0'>
+				INSERT INTO
+				rsvt
+				(
+				<include refid="rsvtColumns" />
+				)
+				VALUES
+				(
+				null
+				, #{rsvt}
+				, #{ctmseq}
+				, now()
+				, null
+				, #{empin}
+				, #{stday}
+				, #{endday}
+				, #{bus}
+				, #{num}
+				, #{desty}
+				, #{rsvpstp}
+				,
+				#{stt}
+				, #{endt}
+				,
+				#{rsvtdetail}
+				,
+				#{cont}
+				, #{conm}
+				, #{confirm}
+				, 1
+				);
+			</when>
+			<otherwise>
+				INSERT INTO
+				customer
+				(
+				<include refid="customerColumns" />
+				)
+				VALUES
+				(
+				null
+				, #{ctmsepa}
+				, #{ctmname}
+				, #{ctmaddress}
+				, #{ctmtel1}
+				, #{ctmtel2}
+				, #{ctmfax}
+				, #{ctmhomepage}
+				, #{ctmstp}
+				, #{ctmdetail}
+				, 1
+				);
+
+				INSERT INTO
+				rsvt
+				(
+				<include refid="rsvtColumns" />
+				)
+				VALUES
+				(
+				null
+				, #{rsvt}
+				, (SELECT MAX(ctmseq) FROM customer)
+				, now()
+				, null
+				, #{empin}
+				, #{stday}
+				, #{endday}
+				, #{bus}
+				, #{num}
+				, #{desty}
+				, #{rsvpstp}
+				,
+				#{stt}
+				, #{endt}
+				,
+				#{rsvtdetail}
+				, #{cont}
+				, #{conm}
+				, #{confirm}
+				, 1
+				);
+			</otherwise>
+		</choose>
+	</insert>
+</mapper>

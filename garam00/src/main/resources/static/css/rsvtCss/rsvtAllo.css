@@ -1,0 +1,87 @@
+.allo {
+    width: 100%;
+    bottom: 0;
+}
+
+.allo small {
+    padding: 0 2rem;
+}
+.allo-main {
+    margin-right: 30rem;
+    padding: 2rem 15rem;
+}
+
+.allo-card {
+    padding: 2rem;
+}
+
+.allo-card h4 {
+    padding-left: 2rem;
+    font-weight: 550;
+}
+
+.allo-card .form-group {
+    margin: 0;
+}
+
+.allo-card-in {
+    padding: 1rem;
+}
+
+.allo-card-in hr {
+    margin: 1.5rem 0;
+}
+
+.allo-detail {
+    display: flex;
+    align-items: center;
+}
+
+.allo-detail p {
+    font-size: 1.5rem;
+}
+.allo-detail small {
+    font-size: 1.2rem;
+}
+
+.allo-allo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 0;
+}
+.allo-allo input:focus {
+    outline: none;
+}
+
+.allo-allo-item {
+    display: flex;
+    flex-direction: column;
+}
+.allo-allo-item div {
+    display: flex;
+}
+
+#onewayBtn {}
+
+.allo-allo .form-control {
+    height: 28px;
+    border-radius: 0;
+    padding: 3px 6px;
+    margin: 0;
+    text-align: center;
+}
+
+.allo-side {
+    border-left: 1px solid rgba(34,34,48,.1);
+    background: white;
+    width: 30rem;
+    position: fixed;
+    top: 9.6rem;
+    bottom: 0;
+    right: 0;
+    z-index: 1050;
+}
+
+/* .edway {
+    display: none;
+} */

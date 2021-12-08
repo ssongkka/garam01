@@ -58,7 +58,6 @@ function getCalTimeInputJSP(calTime) {
 }
 
 function getCalTimeInputJSPtoDB(calTime) {
-    var aaa = '2021-04-01T10:30';
 
     var rtn_Date = calTime.substring(0, 10);
     var rtn_Time = calTime.substring(11);
@@ -144,3 +143,14 @@ function formatCurrency(input, blur) {
     caret_pos = updated_len - original_len + caret_pos;
     input[0].setSelectionRange(caret_pos, caret_pos);
 }
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+
+function numberOnly(e) {
+    e.value = e
+        .value
+        .replace(/[^0-9.]/g, '')
+        .replace(/(\..*)\./g, '$1');
+};

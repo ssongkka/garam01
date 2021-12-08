@@ -24,6 +24,7 @@ dependencies {
     /* Thymeleaf Layout */
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
     /* Log4JDBC */
+    implementation 'com.google.code.gson:gson:2.8.5'
     compileOnly 'org.projectlombok:lombok' 
     compileOnly 'org.springframework.boot:spring-boot-devtools'
     developmentOnly 'org.springframework.boot:spring-boot-devtools' 

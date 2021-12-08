@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.garam.web.rsvt.dto.CustomerDTO;
-import com.garam.web.rsvt.service.CustomerService;
+import com.garam.web.rsvt.dto.RsvtDTO;
+import com.garam.web.rsvt.service.RsvtService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,12 +17,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RestRsvtCustomerController {
 
-	private final CustomerService customerService;
+	private final RsvtService rsvtService;
 
 	@PostMapping(value = "/name")
-	public List<CustomerDTO> customerName(@RequestBody CustomerDTO customerDTO) throws Exception {
+	public List<RsvtDTO> customerName(@RequestBody RsvtDTO rsvtDTO) throws Exception {
 
-		List<CustomerDTO> list = customerService.selectCustomerName(customerDTO);
+		List<RsvtDTO> list = rsvtService.selectCustomerName(rsvtDTO);
 
 		return list;
 	}
