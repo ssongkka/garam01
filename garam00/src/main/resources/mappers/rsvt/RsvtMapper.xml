@@ -3,15 +3,19 @@
 <mapper namespace="com.garam.web.rsvt.mapper.RsvtMapper">
 
 	<sql id="customerColumns">
-		ctmseq , ctmsepa , ctmname , ctmaddress , ctmtel1 , ctmtel2 , ctmfax , ctmhomepage , ctmstp , ctmdetail ,
+		ctmseq , ctmsepa , ctmname , ctmaddress , ctmtel1 , ctmtel2
+		, ctmfax , ctmhomepage , ctmstp , ctmdetail ,
 		ctmtrash
 	</sql>
 	<sql id="rsvtColumns">
-		rsvtseq, rsvt, ctmseq, datein, datech, empin, stday, endday, bus, num, desty, rsvpstp, stt, endt, rsvtdetail, cont, conm, confirm,
-		rsvttrash
+		rsvtseq, rsvt, ctmseq, datein, datech, empin, stday,
+		endday, bus, num, desty, rsvpstp, stt, endt, rsvtdetail, cont, conm,
+		confirm,
+		confirmm, rsvttrash
 	</sql>
 
-	<select id="selectCustomerAll" resultType="com.garam.web.rsvt.dto.RsvtDTO">
+	<select id="selectCustomerAll"
+		resultType="com.garam.web.rsvt.dto.RsvtDTO">
 		SELECT
 
 		<include refid="customerColumns" />
@@ -19,7 +23,9 @@
 		FROM customer WHERE ctmtrash = 1;
 	</select>
 
-	<select id="selectCustomerName" parameterType="com.garam.web.rsvt.dto.RsvtDTO" resultType="com.garam.web.rsvt.dto.RsvtDTO">
+	<select id="selectCustomerName"
+		parameterType="com.garam.web.rsvt.dto.RsvtDTO"
+		resultType="com.garam.web.rsvt.dto.RsvtDTO">
 		SELECT
 
 		<include refid="customerColumns" />
@@ -36,7 +42,8 @@
 		</where>
 	</select>
 
-	<insert id="insertRsvt" parameterType="com.garam.web.rsvt.dto.RsvtDTO">
+	<insert id="insertRsvt"
+		parameterType="com.garam.web.rsvt.dto.RsvtDTO">
 
 		<choose>
 			<when test='ctmseq > 0'>
@@ -54,7 +61,8 @@
 				, null
 				, #{empin}
 				, #{stday}
-				, #{endday}
+				,
+				#{endday}
 				, #{bus}
 				, #{num}
 				, #{desty}
@@ -68,6 +76,7 @@
 				#{cont}
 				, #{conm}
 				, #{confirm}
+				, 1
 				, 1
 				);
 			</when>
@@ -84,7 +93,8 @@
 				, #{ctmname}
 				, #{ctmaddress}
 				, #{ctmtel1}
-				, #{ctmtel2}
+				,
+				#{ctmtel2}
 				, #{ctmfax}
 				, #{ctmhomepage}
 				, #{ctmstp}
@@ -103,14 +113,16 @@
 				, #{rsvt}
 				, (SELECT MAX(ctmseq) FROM customer)
 				, now()
-				, null
+				,
+				null
 				, #{empin}
 				, #{stday}
 				, #{endday}
 				, #{bus}
 				, #{num}
 				, #{desty}
-				, #{rsvpstp}
+				,
+				#{rsvpstp}
 				,
 				#{stt}
 				, #{endt}
@@ -118,10 +130,129 @@
 				#{rsvtdetail}
 				, #{cont}
 				, #{conm}
-				, #{confirm}
+				,
+				#{confirm}
+				, 1
 				, 1
 				);
 			</otherwise>
 		</choose>
 	</insert>
+
+	<select id="selectAlloCTM"
+		parameterType="com.garam.web.rsvt.dto.RsvtDTO"
+		resultType="com.garam.web.rsvt.dto.RsvtDTO">
+		SELECT
+		rsvt.rsvt,
+		customer.ctmseq, customer.ctmsepa,
+		customer.ctmname,
+		customer.ctmaddress, customer.ctmtel1,
+		customer.ctmtel2,
+		customer.ctmfax, customer.ctmhomepage,
+		customer.ctmstp,
+		customer.ctmdetail,
+		customer.ctmtrash
+
+		FROM rsvt
+
+		LEFT JOIN
+		customer on
+		rsvt.ctmseq = customer.ctmseq
+
+		WHERE
+
+		(rsvt.stday <![CDATA[<=]]>
+		#{stday})
+		AND
+		(rsvt.endday <![CDATA[>=]]>
+		#{stday})
+
+		GROUP BY
+		customer.ctmseq
+
+		ORDER BY
+		customer.ctmsepa,
+		customer.ctmseq
+	</select>
+	<select id="selectAlloRSVT"
+		parameterType="com.garam.web.rsvt.dto.RsvtDTO"
+		resultType="com.garam.web.rsvt.dto.RsvtDTO">
+		SELECT *
+
+		FROM
+		rsvt
+
+		left join customer on rsvt.ctmseq =
+		customer.ctmseq
+
+		WHERE
+
+		(rsvt.stday <![CDATA[<=]]>
+		#{stday})
+		AND
+		(rsvt.endday <![CDATA[>=]]>
+		#{stday})
+
+		ORDER BY
+		customer.ctmsepa,
+		customer.ctmseq
+	</select>
+	<select id="selectAlloOPER"
+		parameterType="com.garam.web.rsvt.dto.RsvtDTO"
+		resultType="com.garam.web.rsvt.dto.RsvtDTO">
+		SELECT *
+
+		FROM operation_info
+
+		left join rsvt
+		on operation_info.rsvt = rsvt.rsvt
+
+		WHERE
+
+		operation_info.rsvt
+		IN
+		(SELECT
+		rsvt.rsvt
+
+		FROM rsvt
+
+		left join customer
+		on rsvt.ctmseq = customer.ctmseq
+
+		WHERE
+
+		(rsvt.stday <![CDATA[<=]]>
+		#{stday})
+		AND
+		(rsvt.endday <![CDATA[>=]]>
+		#{stday})
+
+		AND
+
+		operation_info.operday = #{stday}
+
+		ORDER BY
+		rsvt.ctmseq);
+	</select>
+	<!-- <select id="selectAlloOPER" parameterType="hashmap" -->
+	<!-- resultType="com.garam.web.rsvt.dto.OperationRsvtDTO"> -->
+	<!-- SELECT -->
+
+	<!-- * -->
+
+	<!-- FROM operation_info -->
+
+	<!-- WHERE -->
+
+	<!-- operation_info.rsvt -->
+
+	<!-- IN -->
+
+	<!-- <foreach collection="rsvt" item="rsvt" open="(" close=")" -->
+	<!-- separator=","> -->
+
+	<!-- #{rsvt.value} -->
+
+	<!-- </foreach> -->
+	<!-- </select> -->
 </mapper>

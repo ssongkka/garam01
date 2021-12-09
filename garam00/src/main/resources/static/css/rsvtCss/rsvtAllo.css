@@ -5,6 +5,7 @@
 
 .allo small {
     padding: 0 2rem;
+    font-size: 1.2rem;
 }
 .allo-main {
     margin-right: 30rem;
@@ -12,12 +13,20 @@
 }
 
 .allo-card {
+    margin-bottom: 2rem;
     padding: 2rem;
 }
 
 .allo-card h4 {
-    padding-left: 2rem;
+    /* padding-left: 2rem; */
+    font-size: 1.5rem;
     font-weight: 550;
+}
+
+.rv {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .allo-card .form-group {
@@ -38,9 +47,12 @@
 }
 
 .allo-detail p {
-    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+    font-size: 1.3rem;
+    font-weight: 550;
 }
 .allo-detail small {
+    letter-spacing: 0.5px;
     font-size: 1.2rem;
 }
 
@@ -59,6 +71,19 @@
 }
 .allo-allo-item div {
     display: flex;
+    border: 1px solid rgba(34,34,48,.1);
+}
+
+.allo-allo-item input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    text-align: center;
+    height: 3rem;
+}
+.allo-allo-item input:focus {
+    border: 0.1rem solid red;
 }
 
 #onewayBtn {}
@@ -66,6 +91,7 @@
 .allo-allo .form-control {
     height: 28px;
     border-radius: 0;
+    border: 0;
     padding: 3px 6px;
     margin: 0;
     text-align: center;
@@ -81,6 +107,8 @@
     right: 0;
     z-index: 1050;
 }
+
+#allocont {}
 
 /* .edway {
     display: none;

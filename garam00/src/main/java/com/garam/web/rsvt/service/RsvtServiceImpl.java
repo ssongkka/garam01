@@ -1,10 +1,13 @@
 package com.garam.web.rsvt.service;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.garam.web.rsvt.dto.OperationRsvtDTO;
 import com.garam.web.rsvt.dto.RsvtDTO;
 import com.garam.web.rsvt.mapper.RsvtMapper;
 
@@ -51,5 +54,33 @@ public class RsvtServiceImpl implements RsvtService {
 				+ LocalDateTime.now().toString().substring(2).replace("-", "").replace(":", "");
 
 		return rsvt;
+	}
+
+	@Override
+	public List<RsvtDTO> selectAlloCTM(RsvtDTO rsvtDTO) throws Exception {
+
+		List<RsvtDTO> list = rsvtMapper.selectAlloCTM(rsvtDTO);
+
+		return list;
+	}
+
+	@Override
+	public List<RsvtDTO> selectAlloRSVT(RsvtDTO rsvtDTO) throws Exception {
+		List<RsvtDTO> list = rsvtMapper.selectAlloRSVT(rsvtDTO);
+
+		return list;
+	}
+
+	@Override
+	public List<RsvtDTO> selectAlloOPER(RsvtDTO rsvtDTO) throws Exception {
+
+//		HashMap<String, Object> rsvt = new HashMap<>();
+//		for (int i = 0; i < map.size(); i++) {
+//			rsvt.put("rsvt", map);
+//		}
+
+		List<RsvtDTO> list = rsvtMapper.selectAlloOPER(rsvtDTO);
+
+		return list;
 	}
 }

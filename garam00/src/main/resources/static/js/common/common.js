@@ -154,3 +154,10 @@ function numberOnly(e) {
         .replace(/[^0-9.]/g, '')
         .replace(/(\..*)\./g, '$1');
 };
+
+function AddComma(num) {
+    var regexp = /\B(?=(\d{3})+(?!\d))/g;
+    return num
+        .toString()
+        .replace(regexp, ',');
+}

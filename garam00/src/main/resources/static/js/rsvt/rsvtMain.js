@@ -35,6 +35,7 @@ function setCalWhite(e) {
     $('#endday').val(day);
     this.setBigDay(day);
     this.setCaldays(day);
+    getAlloList(day);
 }
 
 function setBigDay(day) {
