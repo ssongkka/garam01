@@ -69,9 +69,20 @@
     display: flex;
     flex-direction: column;
 }
-.allo-allo-item div {
+
+.stWay {
     display: flex;
     border: 1px solid rgba(34,34,48,.1);
+    align-items: center;
+}
+.edway {
+    display: flex;
+    border: 1px solid rgba(34,34,48,.1);
+    align-items: center;
+}
+
+.stWay div {
+    height: 100%;
 }
 
 .allo-allo-item input {
@@ -81,6 +92,7 @@
     width: 100%;
     text-align: center;
     height: 3rem;
+    font-size: 1.2rem;
 }
 .allo-allo-item input:focus {
     border: 0.1rem solid red;
@@ -102,14 +114,10 @@
     background: white;
     width: 30rem;
     position: fixed;
-    top: 9.6rem;
+    top: 0;
     bottom: 0;
     right: 0;
-    z-index: 1050;
+    z-index: 1;
 }
 
 #allocont {}
-
-/* .edway {
-    display: none;
-} */

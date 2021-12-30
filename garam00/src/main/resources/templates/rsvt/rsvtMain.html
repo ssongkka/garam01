@@ -5,7 +5,7 @@
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorator="layout/cal_basic">
     <th:block layout:fragment="title">
-        <title>예약해봐요</title>
+        <title>데쉬보드에요</title>
     </th:block>
 
     <th:block layout:fragment="add-css">
@@ -16,21 +16,23 @@
     <th:block layout:fragment="main">
         <main class="main">
             <div class="tab-pane" role="tabpanel">
-                <!-- Nav tabs -->
-                <ul class="dd-nav card" role="tablist">
-                    <li role="presentation" class="active">
-                        <a href="#rsvt" aria-controls="rsvt" role="tab" data-toggle="tab">확인</a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#allo" aria-controls="allo" role="tab" data-toggle="tab">배차관리</a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#manage" aria-controls="manage" role="tab" data-toggle="tab">예약관리</a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a>
-                    </li>
-                </ul>
+                <div class="dd-main-nav">
+                    <!-- Nav tabs -->
+                    <ul class="dd-nav card" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#rsvt" aria-controls="rsvt" role="tab" data-toggle="tab">확인</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#allo" aria-controls="allo" role="tab" data-toggle="tab">배차관리</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#manage" aria-controls="manage" role="tab" data-toggle="tab">예약관리</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a>
+                        </li>
+                    </ul>
+                </div>
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="rsvt row tab-pane" id="rsvt">
@@ -43,23 +45,31 @@
                                 th:action="@{/rsvt/rsvtregister}"
                                 method="post"
                                 autocomplete="off">
-                                <h3>고객 정보
-                                    <small>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="ctmsepa" id="radio0" value="0" checked="checked">
-                                            일반
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="ctmsepa" id="radio1" value="1">
-                                            학단
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="ctmsepa" id="radio2" value="2">
-                                            거래처
-                                        </label>
-                                    </small>
-                                </h3>
-                                <input type="hidden" id="ctmseq" name="ctmseq" value="0">
+                                <div class="rsvt-cst">
+                                    <h3>고객 정보
+                                        <small>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="ctmsepa" id="radio0" value="0" checked="checked">
+                                                일반
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="ctmsepa" id="radio1" value="1">
+                                                학단
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="ctmsepa" id="radio2" value="2">
+                                                거래처
+                                            </label>
+                                        </small>
+                                    </h3>
+                                    <div>
+                                        <h4>
+                                            <a class="far fa-list-alt" id="many-insert">
+                                                대량입력</a>
+                                        </h4>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="ctmno" name="ctmno" value="0">
                                 <div class="row">
                                     <div class="form-group col-xs-5">
                                         <i class="fas fa-book-open"></i>
@@ -78,7 +88,7 @@
                                                 th:each="custom : ${customer}"
                                                 th:value="${custom.ctmname}"
                                                 th:label="${custom.ctmtel1}"
-                                                th:data-value="${custom.ctmseq}"></option>
+                                                th:data-value="${custom.ctmno}"></option>
 
                                         </datalist>
                                     </div>
@@ -264,12 +274,12 @@
                                     <div class="form-group col-xs-12 col-lg-6">
                                         <i class="fas fa-map-marker-alt"></i>
                                         <label for="rsvpstp">출발장소(모두기입)</label>
-                                        <textarea id="rsvpstp" name="rsvpstp"></textarea>
+                                        <textarea id="rsvpstp" name="rsvpstp" class="form-control"></textarea>
                                     </div>
                                     <div class="form-group col-xs-12 col-lg-6">
                                         <i class="fas fa-map-marked-alt"></i>
                                         <label for="desty">목적지 및 경유지</label>
-                                        <textarea id="desty" name="desty"></textarea>
+                                        <textarea id="desty" name="desty" class="form-control"></textarea>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -351,6 +361,7 @@
                                             <div class="allo-allo-item col-xs-6 col-lg-4">
                                                 <input type="hidden" id="" value="">
                                                 <div class="stWay">
+                                                    <div>1</div>
                                                     <input type="text" list="car-info" tabindex="-1" placeholder="1호차">
                                                     <input type="text" list="per-info" tabindex="-1" placeholder="승무원">
                                                     <input type="hidden" name="atlm1" id="atlm1" tabindex="-1">
@@ -415,3 +426,4 @@
 <script src="/js/rsvt/rsvtMain.js"></script>
 <script src="/js/rsvt/rsvtAllo.js"></script>
 </th:block>
+</html>

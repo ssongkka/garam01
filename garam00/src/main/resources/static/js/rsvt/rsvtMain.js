@@ -118,9 +118,13 @@ $("#ctmname").change(function () {
         "X-HTTP-Method-Override": "POST"
     };
 
+    console.log('aaaaaa   ' + idNum);
+
     const params = {
-        "ctmseq": idNum
+        "ctmno": idNum
     };
+
+    console.log('cccc  ' + params[0]);
     console.log(params);
     $.ajax({
         url: url,
@@ -130,7 +134,9 @@ $("#ctmname").change(function () {
         data: JSON.stringify(params),
         success: function (r) {
 
-            $('#ctmseq').val('');
+            console.log('bbbb  ' + r);
+
+            $('#ctmno').val('');
             $('#radio0').prop('checked', true);
             $('#ctmtel1').val('');
             $('#ctmstp').val('');
@@ -140,7 +146,7 @@ $("#ctmname").change(function () {
             $('#ctmaddress').val('');
             $('#ctmhomepage').val('');
 
-            $('#ctmseq').val(r[0].ctmseq);
+            $('#ctmno').val(r[0].ctmno);
 
             if (r[0].ctmsepa === 0) {
                 $('#radio0').prop('checked', true);
@@ -162,7 +168,12 @@ $("#ctmname").change(function () {
     });
 });
 
-$("#endday").change(function () {
+$(document).on('change', '#stday', function () {
+    $("#endday").val($("#stday").val())
+    $("#daynight").text('(당일)');
+});
+
+$(document).on('change', '#endday', function () {
     const origin = $("#endday").val();
     const std = new Date($("#stday").val());
     const edd = new Date($("#endday").val());
@@ -189,7 +200,7 @@ $("#endday").change(function () {
 $(document).on('click', '#eraser', function () {
 
     if (confirm('입력 내용을 지우시겠습니까?')) {
-        $('#ctmseq').val('0');
+        $('#ctmno').val('0');
 
         $('#ctmname').val('');
         $('#ctmtel1').val('');
@@ -228,8 +239,22 @@ $(document).on('click', '#eraser', function () {
     }
 });
 $(document).on('click', '#ername', function () {
+    ernm();
+});
+
+$(document).on('keydown', 'input', function (eInner) {
+    console.log($('#ctmname').is(":focus"));
+    if ($('#ctmname').is(":focus")) {
+        var keyValue = eInner.which; //enter key
+        if (keyValue == 8 || keyValue == 27 || keyValue == 46) {
+            ernm();
+        }
+    }
+});
+
+function ernm() {
     $('#radio0').prop('checked', true);
-    $('#ctmseq').val('0');
+    $('#ctmno').val('0');
 
     $('#ctmname').val('');
     $('#ctmtel1').val('');
@@ -239,16 +264,20 @@ $(document).on('click', '#ername', function () {
     $('#ctmfax').val('');
     $('#ctmaddress').val('');
     $('#ctmhomepage').val('');
-});
+}
 
 $(document).on('click', '#insert-rsvt', function () {
     let money = $('#conm2')
         .val()
-        .replace(",", "");
-    money = money.replace(",", "");
-    money = money.replace(",", "");
-    money = money.replace(",", "");
-    $('#conm').val();
+        .replaceAll(",", "");
+
+    $('#conm').val(money);
 
     formRsvt.submit();
+});
+$(document).on('click', '#many-insert', function () {
+    // var w = 800; var h = 900; var xPos = (document.body.offsetWidth) - w; xPos +=
+    // window.screenLeft; var yPos = 10;
+
+    window.open('/rsvt/rsvtMany', 'ot');
 });

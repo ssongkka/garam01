@@ -260,7 +260,12 @@ blockquote {
     padding: 2rem;
 }
 
-.dd-main-nav {}
+.dd-main-nav {
+    z-index: 1050;
+    position: fixed;
+    left: 30rem;
+    right: 0;
+}
 
 .dd-nav {
     display: flex;

@@ -1,5 +1,15 @@
 @charset "UTF-8";
 
+.tab-content {
+    padding-top: 5rem;
+}
+
+.rsvt-cst {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .rsvt {
     width: 1200px;
     margin-right: auto;
@@ -90,6 +100,16 @@
 .rsvt-hd {
     font-size: 2rem;
     padding-bottom: 2rem;
+}
+
+#ctmname:focus {
+    border-color: #Fc4700;
+    box-shadow: none;
+}
+
+#ctmtel1:focus {
+    border-color: #Fc4700;
+    box-shadow: none;
 }
 
 @media (max-width:768px) {

@@ -1,9 +1,21 @@
 class dateUtil {
-
     isSameDay(target1, target2) {
         return target1.getFullYear() === target2.getFullYear() && target1.getMonth() === target2.getMonth() && target1.getDate() === target2.getDate();
     }
+}
 
+function leftPad(value) {
+    if (value >= 10) {
+        return value;
+    }
+    return `0${value}`;
+}
+
+function toStringByFormatting(source, delimiter = '-') {
+    const year = source.getFullYear();
+    const month = leftPad(source.getMonth() + 1);
+    const day = leftPad(source.getDate());
+    return [year, month, day].join(delimiter);
 }
 
 function resize(obj) {

@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.garam.web.rsvt.dto.OperationRsvtDTO;
 import com.garam.web.rsvt.dto.RsvtDTO;
 import com.garam.web.rsvt.mapper.RsvtMapper;
 
@@ -35,13 +34,10 @@ public class RsvtServiceImpl implements RsvtService {
 	public int insertRsvt(RsvtDTO rsvtDTO) throws Exception {
 
 		int rtn = 0;
-		System.out.println("asgdsdgdg");
-		System.out.println(rsvtDTO.getRsvt());
 
 		if (rsvtDTO.getRsvt() == null || rsvtDTO.getRsvt().equals("")) {
 			System.out.println(rsvtDTO);
-			rsvtDTO.setRsvt(get_Rsvt(Integer.toString(rsvtDTO.getCtmseq()), rsvtDTO.getBus(),
-					Integer.toString(rsvtDTO.getNum()), rsvtDTO.getStday().toString()));
+			rsvtDTO.setRsvt(get_Rsvt(rsvtDTO.getCtmno(), rsvtDTO.getStday().toString()));
 
 			rtn = rsvtMapper.insertRsvt(rsvtDTO);
 		} else {
@@ -49,9 +45,9 @@ public class RsvtServiceImpl implements RsvtService {
 		return rtn;
 	}
 
-	private String get_Rsvt(String ctmseq, String bus, String num, String stday) {
-		String rsvt = ctmseq + "-" + stday.substring(2).replace("-", "") + "-"
-				+ LocalDateTime.now().toString().substring(2).replace("-", "").replace(":", "");
+	private String get_Rsvt(String ctmno, String stday) {
+		String rsvt = "R-" + ctmno + "-" + stday.substring(2).replace("-", "") + "-"
+				+ LocalDateTime.now().toString().substring(2, 22).replace("-", "").replace(":", "").replace(".", "-");
 
 		return rsvt;
 	}
@@ -74,13 +70,20 @@ public class RsvtServiceImpl implements RsvtService {
 	@Override
 	public List<RsvtDTO> selectAlloOPER(RsvtDTO rsvtDTO) throws Exception {
 
-//		HashMap<String, Object> rsvt = new HashMap<>();
-//		for (int i = 0; i < map.size(); i++) {
-//			rsvt.put("rsvt", map);
-//		}
-
 		List<RsvtDTO> list = rsvtMapper.selectAlloOPER(rsvtDTO);
 
 		return list;
+	}
+
+	@Override
+	public int insertManyRsvt(List<Map<String, Object>> map) throws Exception {
+		HashMap<String, Object> rsvt = new HashMap<>();
+		for (int i = 0; i < map.size(); i++) {
+			rsvt.put("rsvt", map);
+		}
+
+		int rtn = rsvtMapper.insertManyRsvt(rsvt);
+
+		return rtn;
 	}
 }

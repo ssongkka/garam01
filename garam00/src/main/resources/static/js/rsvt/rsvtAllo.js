@@ -2,7 +2,6 @@ $(document).ready(function () {});
 
 $(document).on('keydown', 'input', function (eInner) {
     var keyValue = eInner.which; //enter key
-    console.log('asdasd');
     if (keyValue == 37 || keyValue == 39) {
         var tabindex = $(this).attr('tabindex');
         if (keyValue == 39) { //down arrow 40
@@ -11,7 +10,8 @@ $(document).on('keydown', 'input', function (eInner) {
             tabindex--;
         }
         $('[tabindex=' + tabindex + ']').focus();
-        $('[tabindex=' + tabindex + ']').scrollIntoView();
+    } else if (keyValue == 13) {
+        console.log('affwf');
     }
 });
 
@@ -28,7 +28,7 @@ function getAlloList(day) {
                 "X-HTTP-Method-Override": "POST"
             };
 
-            day = '2019-11-29';
+            // day = '2019-11-29';
 
             const params = {
                 "stday": day
@@ -167,20 +167,24 @@ function getAlloList(day) {
                             ) + '" placeholder="' + (
                                 k + 1
                             ) + '호차">';
+                            htmls += '<input type="hidden" id="" value="0">';
                             htmls += '<input type="text" list="per-info" tabindex="-1" placeholder="승무원">';
-                            htmls += '<input type="hidden" name="atlm1" id="atlm1" tabindex="-1">';
+                            htmls += '<input type="hidden" id="" value="0">';
                             htmls += '<input type="text" id="atlmst" data-type="currency" tabindex="' + (
                                 ++cnt
                             ) + '" placeholder="배차금액">';
+                            htmls += '<input type="hidden" name="" id="" tabindex="-1">';
                             htmls += '</div>';
                             htmls += ' <div class="edway" style="display: none;" id="ed-' + r[i].rsvtseq + '-' + (
                                 k + 1
                             ) + '">';
                             htmls += '<input type="text" list="car-info" tabindex="-1" placeholder="편도">';
+                            htmls += '<input type="hidden" id="" value="0">';
                             htmls += '<input type="text" list="per-info" tabindex="-1" placeholder="승무원">';
-                            htmls += '<input type="hidden" name="atlm2" id="atlm2" tabindex="-1">';
+                            htmls += '<input type="hidden" id="" value="0">';
                             htmls += '<input type="text" id="atlmed" data-type="currency" tabindex="-1" placeholder=' +
                                     '"배차금액">';
+                            htmls += '<input type="hidden" name="" id="" tabindex="-1">';
                             htmls += '</div>';
                             htmls += '</div>';
                         }
@@ -223,16 +227,28 @@ function getAlloList(day) {
                 success: function (r) {
                     for (let i = 0; i < r.length; i++) {
                         $('#' + r[i].rsvtseq + '-' + r[i].operno).val(r[i].opernum);
-                        console.log($('#' + r[i].rsvtseq + '-' + r[i].operno).val());
                         var stid = '#st-' + r[i].rsvtseq + '-' + r[i].operno;
                         if (r[i].opertype === 0) {
                             $(stid)
                                 .children()
                                 .first()
+                                .val(r[i].vehicle);
+                            $(stid)
+                                .children()
+                                .first()
+                                .next()
                                 .val(r[i].opercar);
                             $(stid)
                                 .children()
                                 .first()
+                                .next()
+                                .next()
+                                .val(r[i].name);
+                            $(stid)
+                                .children()
+                                .first()
+                                .next()
+                                .next()
                                 .next()
                                 .val(r[i].operid);
                             $(stid)
@@ -240,14 +256,18 @@ function getAlloList(day) {
                                 .first()
                                 .next()
                                 .next()
-                                .val(r[i].atlm);
+                                .next()
+                                .next()
+                                .val(AddComma(r[i].atlm));
                             $(stid)
                                 .children()
                                 .first()
                                 .next()
                                 .next()
                                 .next()
-                                .val(AddComma(r[i].atlm));
+                                .next()
+                                .next()
+                                .val(r[i].atlm);
 
                         } else {
                             var edid = '#ed-' + r[i].rsvtseq + '-' + r[i].operno;
@@ -256,10 +276,23 @@ function getAlloList(day) {
                                     $(stid)
                                         .children()
                                         .first()
+                                        .val(r[i].vehicle);
+                                    $(stid)
+                                        .children()
+                                        .first()
+                                        .next()
                                         .val(r[i].opercar);
                                     $(stid)
                                         .children()
                                         .first()
+                                        .next()
+                                        .next()
+                                        .val(r[i].name);
+                                    $(stid)
+                                        .children()
+                                        .first()
+                                        .next()
+                                        .next()
                                         .next()
                                         .val(r[i].operid);
                                     $(stid)
@@ -267,24 +300,41 @@ function getAlloList(day) {
                                         .first()
                                         .next()
                                         .next()
-                                        .val(r[i].atlm);
+                                        .next()
+                                        .next()
+                                        .val(AddComma(r[i].atlm));
                                     $(stid)
                                         .children()
                                         .first()
                                         .next()
                                         .next()
                                         .next()
-                                        .val(AddComma(r[i].atlm));
+                                        .next()
+                                        .next()
+                                        .val(r[i].atlm);
                                     break;
 
                                 case 2:
                                     $(edid)
                                         .children()
                                         .first()
+                                        .val(r[i].vehicle);
+                                    $(edid)
+                                        .children()
+                                        .first()
+                                        .next()
                                         .val(r[i].opercar);
                                     $(edid)
                                         .children()
                                         .first()
+                                        .next()
+                                        .next()
+                                        .val(r[i].name);
+                                    $(edid)
+                                        .children()
+                                        .first()
+                                        .next()
+                                        .next()
                                         .next()
                                         .val(r[i].operid);
                                     $(edid)
@@ -292,14 +342,18 @@ function getAlloList(day) {
                                         .first()
                                         .next()
                                         .next()
-                                        .val(r[i].atlm);
+                                        .next()
+                                        .next()
+                                        .val(AddComma(r[i].atlm));
                                     $(edid)
                                         .children()
                                         .first()
                                         .next()
                                         .next()
                                         .next()
-                                        .val(AddComma(r[i].atlm));
+                                        .next()
+                                        .next()
+                                        .val(r[i].atlm);
                                     break;
 
                                 default:

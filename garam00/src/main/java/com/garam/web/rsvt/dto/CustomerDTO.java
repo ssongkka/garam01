@@ -4,6 +4,8 @@ public class CustomerDTO {
 
 	private Integer ctmseq;
 
+	private String ctmno;
+
 	private Integer sepa;
 
 	private String name;
@@ -30,6 +32,14 @@ public class CustomerDTO {
 
 	public void setCtmseq(Integer ctmseq) {
 		this.ctmseq = ctmseq;
+	}
+
+	public String getCtmno() {
+		return ctmno;
+	}
+
+	public void setCtmno(String ctmno) {
+		this.ctmno = ctmno;
 	}
 
 	public Integer getSepa() {
@@ -114,14 +124,14 @@ public class CustomerDTO {
 
 	@Override
 	public String toString() {
-		return "CustomerDTO [ctmseq=" + ctmseq + ", sepa=" + sepa + ", name=" + name + ", address=" + address
-				+ ", tel1=" + tel1 + ", tel2=" + tel2 + ", fax=" + fax + ", homepage=" + homepage + ", start=" + start
-				+ ", detail=" + detail + ", trash=" + trash + ", getCtmseq()=" + getCtmseq() + ", getSepa()="
-				+ getSepa() + ", getName()=" + getName() + ", getAddress()=" + getAddress() + ", getTel1()=" + getTel1()
-				+ ", getTel2()=" + getTel2() + ", getFax()=" + getFax() + ", getHomepage()=" + getHomepage()
-				+ ", getStart()=" + getStart() + ", getDetail()=" + getDetail() + ", getTrash()=" + getTrash()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+		return "CustomerDTO [ctmseq=" + ctmseq + ", ctmno=" + ctmno + ", sepa=" + sepa + ", name=" + name + ", address="
+				+ address + ", tel1=" + tel1 + ", tel2=" + tel2 + ", fax=" + fax + ", homepage=" + homepage + ", start="
+				+ start + ", detail=" + detail + ", trash=" + trash + ", getCtmseq()=" + getCtmseq() + ", getCtmno()="
+				+ getCtmno() + ", getSepa()=" + getSepa() + ", getName()=" + getName() + ", getAddress()="
+				+ getAddress() + ", getTel1()=" + getTel1() + ", getTel2()=" + getTel2() + ", getFax()=" + getFax()
+				+ ", getHomepage()=" + getHomepage() + ", getStart()=" + getStart() + ", getDetail()=" + getDetail()
+				+ ", getTrash()=" + getTrash() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
 	}
 
 }
