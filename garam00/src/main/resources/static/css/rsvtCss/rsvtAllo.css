@@ -94,8 +94,13 @@
     height: 3rem;
     font-size: 1.2rem;
 }
+
+.allo-allo-item input {
+    border: 0.1rem solid transparent;
+}
+
 .allo-allo-item input:focus {
-    border: 0.1rem solid red;
+    border: 0.1rem solid rgb(36, 36, 44, 0.5);
 }
 
 #onewayBtn {}

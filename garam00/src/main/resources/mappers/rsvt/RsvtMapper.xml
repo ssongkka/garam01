@@ -48,105 +48,68 @@
 		<!-- </where> -->
 	</select>
 
+	<insert id="insertCtm"
+		parameterType="com.garam.web.rsvt.dto.RsvtDTO">
+		INSERT INTO
+		customer
+		(
+		<include refid="customerColumns" />
+		)
+		VALUES
+		(
+		null
+		, #{ctmno}
+		, #{ctmsepa}
+		, #{ctmname}
+		, #{ctmaddress}
+		,
+		#{ctmtel1}
+		,
+		#{ctmtel2}
+		, #{ctmfax}
+		, #{ctmhomepage}
+		, #{ctmstp}
+		,
+		#{ctmdetail}
+		, 1
+		);
+	</insert>
+
 	<insert id="insertRsvt"
 		parameterType="com.garam.web.rsvt.dto.RsvtDTO">
 
-		<choose>
-			<when test='ctmno == 0'>
-				INSERT INTO
-				customer
-				(
-				<include refid="customerColumns" />
-				)
-				VALUES
-				(
-				null
-				, #{ctmno}
-				, #{ctmsepa}
-				, #{ctmname}
-				, #{ctmaddress}
-				,
-				#{ctmtel1}
-				,
-				#{ctmtel2}
-				, #{ctmfax}
-				, #{ctmhomepage}
-				, #{ctmstp}
-				,
-				#{ctmdetail}
-				, 1
-				);
-
-				INSERT INTO
-				rsvt
-				(
-				<include refid="rsvtColumns" />
-				)
-				VALUES
-				(
-				null
-				, #{rsvt}
-				, #{ctmno}
-				, now()
-				,
-				null
-				, #{empin}
-				, #{stday}
-				,
-				#{endday}
-				, #{bus}
-				, #{num}
-				, #{desty}
-				,
-				#{rsvpstp}
-				,
-				#{stt}
-				, #{endt}
-				,
-				#{rsvtdetail}
-				, #{cont}
-				, #{conm}
-				,
-				#{confirm}
-				, 1
-				, 1
-				);
-			</when>
-			<otherwise>
-				INSERT INTO
-				rsvt
-				(
-				<include refid="rsvtColumns" />
-				)
-				VALUES
-				(
-				null
-				, #{rsvt}
-				, #{ctmno}
-				, now()
-				, null
-				, #{empin}
-				, #{stday}
-				,
-				#{endday}
-				, #{bus}
-				, #{num}
-				, #{desty}
-				, #{rsvpstp}
-				,
-				#{stt}
-				, #{endt}
-				,
-				#{rsvtdetail}
-				,
-				#{cont}
-				, #{conm}
-				, #{confirm}
-				, 1
-				, 1
-				);
-			</otherwise>
-		</choose>
+		INSERT INTO
+		rsvt
+		(
+		<include refid="rsvtColumns" />
+		)
+		VALUES
+		(
+		null
+		, #{rsvt}
+		, #{ctmno}
+		, now()
+		, null
+		, #{empin}
+		, #{stday}
+		,
+		#{endday}
+		, #{bus}
+		, #{num}
+		, #{desty}
+		, #{rsvpstp}
+		,
+		#{stt}
+		, #{endt}
+		,
+		#{rsvtdetail}
+		,
+		#{cont}
+		, #{conm}
+		, #{confirm}
+		, 1
+		, 1
+		);
 	</insert>
 
 	<insert id="insertManyRsvt" parameterType="java.util.HashMap">

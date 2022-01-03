@@ -10,6 +10,8 @@ public interface RsvtService {
 
 	public List<RsvtDTO> selectCustomerName(RsvtDTO rsvtDTO) throws Exception;
 
+	public int insertCtm(RsvtDTO rsvtDTO) throws Exception;
+
 	public int insertRsvt(RsvtDTO rsvtDTO) throws Exception;
 
 	public int insertManyRsvt(List<Map<String, Object>> map) throws Exception;

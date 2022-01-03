@@ -20,11 +20,15 @@
                 id="empin"
                 name="empin"
                 th:value="${user.position}+'&nbsp;'+${user.name}">
-            <h3>고객정도
-                <small>연락처</small>
-                <small>출발지</small>
-                <small>주소</small>
-            </h3>
+            <input type="hidden" id="m-no" value="0">
+            <input type="hidden" id="m-trash" value="2">
+            <div id="t-cnt">
+                <h3 id="t-name">고객이름
+                    <small id="t-tel">연락처</small>
+                    <small id="t-stp">출발지</small>
+                    <small id="t-add">주소</small>
+                </h3>
+            </div>
             <div>
                 <a type="button" class="asd" data-toggle="modal" data-target="#myModal">
                     <i class="fas fa-user-plus"></i>고객정보입력</a>
@@ -43,9 +47,28 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">고객정보 입력</h4>
+                        <h3>고객 정보 입력
+                        </h3>
                     </div>
+                    <input type="hidden" id="ctmno" name="ctmno" value="0">
+                    <input type="hidden" id="ctmtrash" name="ctmtrash" value="2">
                     <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group col-xs-5">
+                                <label class="radio-inline">
+                                    <input type="radio" name="ctmsepa" id="radio0" value="0" checked="checked">
+                                    일반
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="ctmsepa" id="radio1" value="1">
+                                    학단
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="ctmsepa" id="radio2" value="2">
+                                    거래처
+                                </label>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="form-group col-xs-5">
                                 <i class="fas fa-book-open"></i>
@@ -162,8 +185,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="btn-modal">Save changes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">닫&nbsp;&nbsp;기</button>
+                        <button type="button" class="btn btn-primary" id="btn-modal">입&nbsp;&nbsp;력</button>
                     </div>
                 </div>
             </div>
@@ -215,16 +238,16 @@
                         <input type="time" class="input-sm" value="08:30">
                     </td>
                     <td>
-                        <input type="time" class="input-sm" value="08:30">
+                        <input type="time" class="input-sm">
                     </td>
                     <td>
-                        <input type="text" id="stp">
+                        <input type="text" class="input-sm" id="stp">
                     </td>
                     <td>
-                        <input type="text">
+                        <input type="text" class="input-sm">
                     </td>
                     <td>
-                        <input type="text">
+                        <input type="text" class="input-sm">
                     </td>
                     <td>
                         <select class="input-sm">

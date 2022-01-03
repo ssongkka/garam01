@@ -118,14 +118,10 @@ $("#ctmname").change(function () {
         "X-HTTP-Method-Override": "POST"
     };
 
-    console.log('aaaaaa   ' + idNum);
-
     const params = {
         "ctmno": idNum
     };
 
-    console.log('cccc  ' + params[0]);
-    console.log(params);
     $.ajax({
         url: url,
         type: "POST",
@@ -133,37 +129,42 @@ $("#ctmname").change(function () {
         dataType: "json",
         data: JSON.stringify(params),
         success: function (r) {
-
-            console.log('bbbb  ' + r);
-
-            $('#ctmno').val('');
-            $('#radio0').prop('checked', true);
-            $('#ctmtel1').val('');
-            $('#ctmstp').val('');
-            $('#ctmdetail').val('');
-            $('#ctmtel2').val('');
-            $('#ctmfax').val('');
-            $('#ctmaddress').val('');
-            $('#ctmhomepage').val('');
-
-            $('#ctmno').val(r[0].ctmno);
-
-            if (r[0].ctmsepa === 0) {
+            console.log('qdwdwwqd');
+            console.log(r[0]);
+            if (r[0] != null) {
+                $('#ctmno').val('');
                 $('#radio0').prop('checked', true);
-            } else if (r[0].ctmsepa === 1) {
-                $('#radio1').prop('checked', true);
-            } else if (r[0].ctmsepa === 2) {
-                $('#radio2').prop('checked', true);
-            };
+                $('#ctmtel1').val('');
+                $('#ctmstp').val('');
+                $('#ctmdetail').val('');
+                $('#ctmtel2').val('');
+                $('#ctmfax').val('');
+                $('#ctmaddress').val('');
+                $('#ctmhomepage').val('');
 
-            $('#ctmtel1').val(r[0].ctmtel1);
-            $('#ctmstp').val(r[0].ctmstp);
-            $('#rsvpstp').val($('#ctmstp').val());
-            $('#ctmdetail').val(r[0].ctmdetail);
-            $('#ctmtel2').val(r[0].ctmtel2);
-            $('#ctmfax').val(r[0].ctmfax);
-            $('#ctmaddress').val(r[0].ctmaddress);
-            $('#ctmhomepage').val(r[0].ctmhomepage);
+                $('#ctmtrash').val(1);
+                $('#ctmno').val(r[0].ctmno);
+
+                if (r[0].ctmsepa === 0) {
+                    $('#radio0').prop('checked', true);
+                } else if (r[0].ctmsepa === 1) {
+                    $('#radio1').prop('checked', true);
+                } else if (r[0].ctmsepa === 2) {
+                    $('#radio2').prop('checked', true);
+                };
+
+                $('#ctmtel1').val(r[0].ctmtel1);
+                $('#ctmstp').val(r[0].ctmstp);
+                $('#rsvpstp').val($('#ctmstp').val());
+                $('#ctmdetail').val(r[0].ctmdetail);
+                $('#ctmtel2').val(r[0].ctmtel2);
+                $('#ctmfax').val(r[0].ctmfax);
+                $('#ctmaddress').val(r[0].ctmaddress);
+                $('#ctmhomepage').val(r[0].ctmhomepage);
+            } else {
+                $('#ctmno').val('0');
+                $('#ctmtrash').val(2);
+            }
         }
     });
 });
@@ -255,6 +256,7 @@ $(document).on('keydown', 'input', function (eInner) {
 function ernm() {
     $('#radio0').prop('checked', true);
     $('#ctmno').val('0');
+    $('#ctmtrash').val(2);
 
     $('#ctmname').val('');
     $('#ctmtel1').val('');
@@ -267,11 +269,14 @@ function ernm() {
 }
 
 $(document).on('click', '#insert-rsvt', function () {
+    console.log($('#ctmno').val());
     let money = $('#conm2')
         .val()
         .replaceAll(",", "");
 
     $('#conm').val(money);
+
+    if ($('#ctmno').val() == 0) {}
 
     formRsvt.submit();
 });

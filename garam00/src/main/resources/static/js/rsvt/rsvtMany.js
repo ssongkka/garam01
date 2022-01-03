@@ -94,11 +94,20 @@ $(document).on('click', '#plus-btn', function () {
     htmls += '<input type="time" class="input-sm" value="08:30">';
     htmls += '</td>';
     htmls += '<td>';
-    htmls += '<input type="time" class="input-sm" value="08:30">';
+    htmls += '<input type="time" class="input-sm">';
     htmls += '</td>';
     htmls += '<td>';
     htmls += '<input type="text"';
-    htmls += ' value="' + $('#stp').val() + '">';
+
+    console.log($('#t-stp').text());
+    if (!$('#t-stp').text() || $('#t-stp').text() == "출발지") {
+        console.log('안메롱');
+        htmls += ' value="' + $('#stp').text() + '">';
+    } else {
+        console.log('메롱');
+        htmls += ' value="' + $('#t-stp').text() + '">';
+    }
+
     htmls += '</td>';
     htmls += '<td>';
     htmls += '<input type="text">';
@@ -250,64 +259,197 @@ function ccc(value) {
 }
 
 $(document).on('click', '#btn-modal', function () {
-    $('#myModal').modal("hide");
+    if ($("#ctmname").val() && $("#ctmtel1").val()) {
+        if ($("#ctmtrash").val() == 2) {
+            const url = "/rsvtmany/insertctm";
+            const headers = {
+                "Content-Type": "application/json",
+                "X-HTTP-Method-Override": "POST"
+            };
+
+            function getCtmno() {
+                let str = "";
+
+                for (let i = 0; i < 6; i++) {
+                    switch (parseInt((Math.random() * 3) + 1)) {
+                        case 1:
+                            str += parseInt(Math.random() * 9);
+                            break;
+                        case 2:
+                            str += String.fromCharCode(parseInt((Math.random() * 26) + 65));
+                            break;
+                        case 3:
+                            str += String.fromCharCode(parseInt((Math.random() * 26) + 97));
+                            break;
+                    }
+                }
+
+                const day = toStringByFormatting(new Date())
+                    .replaceAll("-", "")
+                    .substring(2);
+                return "C-" + day + "-" + str;
+            }
+
+            const makeCtmno = getCtmno();
+
+            var radioVal = $('input[name="ctmsepa"]:checked').val();
+
+            const params = {
+                "ctmno": makeCtmno,
+                "ctmsepa": radioVal,
+                "ctmname": $("#ctmname").val(),
+                "ctmaddress": $("#ctmaddress").val(),
+                "ctmtel1": $("#ctmtel1").val(),
+                "ctmtel2": $("#ctmtel2").val(),
+                "ctmfax": $("#ctmfax").val(),
+                "ctmhomepage": $("#ctmhomepage").val(),
+                "ctmstp": $("#ctmstp").val(),
+                "ctmdetail": $("#ctmdetail").val()
+            };
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                headers: headers,
+                dataType: "json",
+                data: JSON.stringify(params),
+
+                success: function (r) {
+                    if (r > 0) {
+                        alert("신규 고객정보 입력 완료");
+                    } else if (r == 0) {
+                        alert("고객정보 입력 실패!\n\n시스템을 확인해주세요.")
+                    } else if (r == -1) {
+                        alert("고객정보 입력 실패!\n\n데이터베이스 처리 과정에 문제가 발생하였습니다.")
+                    } else if (r == -2) {
+                        alert("고객정보 입력 실패!\n\n시스템을 확인해주세요.")
+                    }
+                }
+            });
+
+            $("#m-no").val(makeCtmno);
+        } else {
+            $("#m-no").val($("#ctmno").val());
+        }
+
+        $("#m-trash").val(1);
+
+        let html = '';
+
+        if (fnNullCheck($("#ctmname").val()) > 0) {
+            html += '<h3 id="t-name">' + $("#ctmname").val();
+        };
+
+        if (fnNullCheck($("#ctmtel1").val()) > 0) {
+            html += '<small id="t-tel">' + $("#ctmtel1").val() + '</small>';
+        };
+
+        if (fnNullCheck($("#ctmstp").val()) > 0) {
+            html += '<small id="t-stp">' + $("#ctmstp").val() + '</small>';
+        };
+
+        if (fnNullCheck($("#ctmaddress").val()) > 0) {
+            html += '<small id="t-add">' + $("#ctmaddress").val() + '</small></h3>';
+        };
+
+        if ($('#ctmstp').val()) {
+            $("#stp").val($('#ctmstp').val());
+        } else {
+            $("#stp").val('');
+        }
+
+        if ($('#m-no').val() == 0) {
+            html = `<h3 id="t-name">고객정보</h3><small id="t-tel">연락처</small><small id="t-stp">출발지</small><small id="t-add">주소</small>`;
+            $("#ctmno").val(0);
+            $("#ctmtrash").val(2);
+        } else {
+            $("#ctmno").val($('#m-no').val());
+            $("#ctmtrash").val($('#m-trash').val());
+        };
+
+        $("#t-cnt").html(html);
+
+        $('#myModal').modal("hide");
+    } else {
+        alert("고객 이름과 연락처를 입력해주세요.");
+    }
+
 });
 
 $(document).on('click', '#insert-many', function () {
-    const aaa = $('#rsvt-tb')
-        .children()
-        .children()
-        .children()
-        .children();
-    console.log(aaa);
-    console.log(aaa.length);
 
-    let params = new Array();
-    $(aaa[0]).val()
-    for (let index = 0; index < aaa.length; index = index + 12) {
-        console.log($(aaa[index]).val());
-        const asd = {
-            "rsvt": get_Rsvt(11, $(aaa[index]).val(), index),
-            "ctmseq": 1,
-            "empin": $('#empin').val(),
-            "stday": $(aaa[index]).val(),
-            "endday": $(aaa[index + 1]).val(),
-            "bus": $(aaa[index + 2]).val(),
-            "num": $(aaa[index + 3]).val(),
-            "desty": $(aaa[index + 7]).val(),
-            "rsvpstp": $(aaa[index + 6]).val(),
-            "stt": $(aaa[index + 4]).val(),
-            "endt": $(aaa[index + 5]).val(),
-            "rsvtdetail": $(aaa[index + 8]).val(),
-            "cont": $(aaa[index + 9]).val(),
-            "conm": $(aaa[index + 10])
-                .val()
-                .replaceAll(",", "")
-        };
-        params.push(asd);
-    }
-    console.log(params);
-    console.log(params.length);
+    if ($('#m-no').val() > 0) {
+        const aaa = $('#rsvt-tb')
+            .children()
+            .children()
+            .children()
+            .children();
 
-    const url = "/rsvtmany/insert";
-    const headers = {
-        "Content-Type": "application/json",
-        "X-HTTP-Method-Override": "POST"
-    };
-
-    $.ajax({
-        url: url,
-        type: "POST",
-        headers: headers,
-        dataType: "json",
-        data: JSON.stringify(params),
-        // data: params,
-
-        success: function (r) {
-            console.log(r);
-            alert("하이");
+        let params = new Array();
+        $(aaa[0]).val()
+        for (let index = 0; index < aaa.length; index = index + 12) {
+            console.log($(aaa[index]).val());
+            const asd = {
+                "rsvt": get_Rsvt(11, $(aaa[index]).val(), index),
+                "ctmno": $('#m-no').val(),
+                "empin": $('#empin').val(),
+                "stday": $(aaa[index]).val(),
+                "endday": $(aaa[index + 1]).val(),
+                "bus": $(aaa[index + 2]).val(),
+                "num": $(aaa[index + 3]).val(),
+                "desty": $(aaa[index + 7]).val(),
+                "rsvpstp": $(aaa[index + 6]).val(),
+                "stt": $(aaa[index + 4]).val(),
+                "endt": $(aaa[index + 5]).val(),
+                "rsvtdetail": $(aaa[index + 8]).val(),
+                "cont": $(aaa[index + 9]).val(),
+                "conm": $(aaa[index + 10])
+                    .val()
+                    .replaceAll(",", "")
+            };
+            params.push(asd);
         }
-    });
+
+        const url = "/rsvtmany/insert";
+        const headers = {
+            "Content-Type": "application/json",
+            "X-HTTP-Method-Override": "POST"
+        };
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            headers: headers,
+            dataType: "json",
+            data: JSON.stringify(params),
+
+            success: function (r) {
+                console.log('pppp  ' + r);
+                if (r > 0) {
+                    let rtn = confirm(
+                        "'" + $(' #t-name ').text() + "  " + r + "건'  예약정보 입력 완료\n\n창을 닫으시겠습니까?"
+                    );
+                    if (rtn) {
+                        window.close();
+                    } else {
+                        location.reload();
+                    }
+                } else if (r == 0) {
+                    alert("예약정보 입력 실패!\n\n시스템을 확인해주세요.")
+                    window.close();
+                } else if (r == -1) {
+                    alert("예약정보 입력 실패!\n\n데이터베이스 처리 과정에 문제가 발생하였습니다.")
+                    window.close();
+                } else if (r == -2) {
+                    alert("예약정보 입력 실패!\n\n시스템을 확인해주세요.")
+                    window.close();
+                }
+            }
+        });
+    } else {
+        alert("고객정보를 입력해주세요.");
+    }
+
 });
 
 function get_Rsvt(ctmseq, stday, index) {
@@ -343,9 +485,9 @@ $("#ctmname").change(function () {
     };
 
     const params = {
-        "ctmseq": idNum
+        "ctmno": idNum
     };
-    console.log(params);
+
     $.ajax({
         url: url,
         type: "POST",
@@ -353,35 +495,42 @@ $("#ctmname").change(function () {
         dataType: "json",
         data: JSON.stringify(params),
         success: function (r) {
-
-            $('#ctmno').val('');
-            $('#radio0').prop('checked', true);
-            $('#ctmtel1').val('');
-            $('#ctmstp').val('');
-            $('#ctmdetail').val('');
-            $('#ctmtel2').val('');
-            $('#ctmfax').val('');
-            $('#ctmaddress').val('');
-            $('#ctmhomepage').val('');
-
-            $('#ctmseq').val(r[0].ctmseq);
-
-            if (r[0].ctmsepa === 0) {
+            console.log('qdwdwwqd');
+            console.log(r[0]);
+            if (r[0] != null) {
+                $('#ctmno').val('');
                 $('#radio0').prop('checked', true);
-            } else if (r[0].ctmsepa === 1) {
-                $('#radio1').prop('checked', true);
-            } else if (r[0].ctmsepa === 2) {
-                $('#radio2').prop('checked', true);
-            };
+                $('#ctmtel1').val('');
+                $('#ctmstp').val('');
+                $('#ctmdetail').val('');
+                $('#ctmtel2').val('');
+                $('#ctmfax').val('');
+                $('#ctmaddress').val('');
+                $('#ctmhomepage').val('');
 
-            $('#ctmtel1').val(r[0].ctmtel1);
-            $('#ctmstp').val(r[0].ctmstp);
-            $('#rsvpstp').val($('#ctmstp').val());
-            $('#ctmdetail').val(r[0].ctmdetail);
-            $('#ctmtel2').val(r[0].ctmtel2);
-            $('#ctmfax').val(r[0].ctmfax);
-            $('#ctmaddress').val(r[0].ctmaddress);
-            $('#ctmhomepage').val(r[0].ctmhomepage);
+                $('#ctmtrash').val(1);
+                $('#ctmno').val(r[0].ctmno);
+
+                if (r[0].ctmsepa === 0) {
+                    $('#radio0').prop('checked', true);
+                } else if (r[0].ctmsepa === 1) {
+                    $('#radio1').prop('checked', true);
+                } else if (r[0].ctmsepa === 2) {
+                    $('#radio2').prop('checked', true);
+                };
+
+                $('#ctmtel1').val(r[0].ctmtel1);
+                $('#ctmstp').val(r[0].ctmstp);
+                $('#rsvpstp').val($('#ctmstp').val());
+                $('#ctmdetail').val(r[0].ctmdetail);
+                $('#ctmtel2').val(r[0].ctmtel2);
+                $('#ctmfax').val(r[0].ctmfax);
+                $('#ctmaddress').val(r[0].ctmaddress);
+                $('#ctmhomepage').val(r[0].ctmhomepage);
+            } else {
+                $('#ctmno').val('0');
+                $('#ctmtrash').val(2);
+            }
         }
     });
 });
@@ -408,6 +557,7 @@ $(document).on('keydown', 'input', function (eInner) {
 function ernm() {
     $('#radio0').prop('checked', true);
     $('#ctmno').val('0');
+    $('#ctmtrash').val(2);
 
     $('#ctmname').val('');
     $('#ctmtel1').val('');

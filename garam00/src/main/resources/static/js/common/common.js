@@ -173,3 +173,15 @@ function AddComma(num) {
         .toString()
         .replace(regexp, ',');
 }
+
+function fnNullCheck(str) {
+    var newStr = str;
+
+    console.log(str);
+
+    if (newStr == null || newStr == "" || newStr == undefined || newStr == "undefined") {
+        return 0;
+    } else {
+        return 1;
+    }
+}

@@ -1,6 +1,7 @@
 @charset "UTF-8";
 body {
     padding: 5rem;
+    background: #f6f7f9;
 }
 
 select {
@@ -22,7 +23,7 @@ th {
     text-align: center;
 }
 
-input {
+#rsvt-tb input {
     border: 0;
     padding: 0;
     height: 30px;
@@ -30,12 +31,24 @@ input {
     background: transparent;
 }
 
-input:focus {
+#rsvt-tb input:focus {
     outline: none;
 }
 
 #ername:focus {
     color: red;
+}
+
+#t-cnt small {
+    padding-left: 3rem;
+}
+
+.modal-dialog i {
+    background: #346cb024;
+    color: #346CB0;
+    padding: 0.5rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
 }
 
 .rsvt-ctm {
@@ -52,6 +65,16 @@ input:focus {
     margin: 0;
 }
 
+.rsvt-cst {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rsvt-cst small {
+    margin-left: 3rem;
+}
+
 .asd {
     display: inline-block;
     padding-left: 1rem;
@@ -63,7 +86,7 @@ input:focus {
     vertical-align: top;
 
     border: 1px solid transparent;
-    background: #eff0f2;
+    background: #d1d4da;
     color: #000000;
 }
 

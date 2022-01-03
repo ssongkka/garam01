@@ -15,6 +15,8 @@ public interface RsvtMapper {
 
 	public int insertRsvt(RsvtDTO rsvtDTO) throws Exception;
 
+	public int insertCtm(RsvtDTO rsvtDTO) throws Exception;
+
 	public int insertManyRsvt(HashMap<String, Object> map) throws Exception;
 
 	public List<RsvtDTO> selectAlloCTM(RsvtDTO rsvtDTO) throws Exception;
