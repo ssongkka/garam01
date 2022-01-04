@@ -319,10 +319,13 @@ $(document).on('click', '#btn-modal', function () {
                         alert("신규 고객정보 입력 완료");
                     } else if (r == 0) {
                         alert("고객정보 입력 실패!\n\n시스템을 확인해주세요.")
+                        window.close();
                     } else if (r == -1) {
                         alert("고객정보 입력 실패!\n\n데이터베이스 처리 과정에 문제가 발생하였습니다.")
+                        window.close();
                     } else if (r == -2) {
                         alert("고객정보 입력 실패!\n\n시스템을 확인해주세요.")
+                        window.close();
                     }
                 }
             });

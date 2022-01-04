@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html
+    lang="ko"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="layout/table_basic">
+
+    <th:block layout:fragment="title">
+        <title>인사정보</title>
+    </th:block>
+
+    <th:block layout:fragment="add-css">
+        <link rel="stylesheet" href="/css/employeeCss/employeeMain.css">
+    </th:block>
+
+    <th:block layout:fragment="main"></th:block>
+
+    <th:block layout:fragment="add-script"></th:block>
+
+</html>
