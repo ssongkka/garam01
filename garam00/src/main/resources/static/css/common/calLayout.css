@@ -239,13 +239,6 @@ blockquote {
 
 .ad-cal-items-3 {}
 
-.card {
-    border: none;
-    border-radius: 0.25rem;
-    box-shadow: 0 0 0 1px rgb(20 20 31 / 5%), 0 1px 3px 0 rgb(20 20 31 / 15%);
-    background: white;
-}
-
 .main {
     background: #f6f7f9;
     padding-top: 5rem;

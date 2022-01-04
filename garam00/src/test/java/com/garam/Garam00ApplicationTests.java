@@ -9,8 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.garam.employee_info.entity.employee_info;
 import com.garam.employee_info.entity.employee_infoRepository;
 import com.garam.vehicle_info.entity.vehicle_infoRepository;
-import com.garam.web.rsvt.mapper.RsvtMapper;
-import com.garam.web.rsvt.service.RsvtService;
+import com.garam.web.dashboard.mapper.DashboardMapper;
+import com.garam.web.dashboard.service.MainService;
 
 @SpringBootTest
 class Garam00ApplicationTests {
@@ -21,9 +21,9 @@ class Garam00ApplicationTests {
 	private vehicle_infoRepository bbb;
 
 	@Autowired
-	private RsvtService ccc;
+	private MainService ccc;
 	@Autowired
-	private RsvtMapper ddd;
+	private DashboardMapper ddd;
 
 	@Test
 	void contextLoads() {

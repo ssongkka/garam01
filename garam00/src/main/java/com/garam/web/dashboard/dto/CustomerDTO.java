@@ -1,4 +1,4 @@
-package com.garam.web.rsvt.dto;
+package com.garam.web.dashboard.dto;
 
 public class CustomerDTO {
 

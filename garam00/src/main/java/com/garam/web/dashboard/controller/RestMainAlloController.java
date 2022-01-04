@@ -1,4 +1,4 @@
-package com.garam.web.rsvt.controller;
+package com.garam.web.dashboard.controller;
 
 import java.util.List;
 
@@ -7,17 +7,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.garam.web.rsvt.dto.RsvtDTO;
-import com.garam.web.rsvt.service.RsvtService;
+import com.garam.web.dashboard.dto.RsvtDTO;
+import com.garam.web.dashboard.service.MainService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(value = "/allo")
 @RequiredArgsConstructor
-public class RestRsvtAlloController {
+public class RestMainAlloController {
 
-	private final RsvtService rsvtService;
+	private final MainService rsvtService;
 
 	@PostMapping(value = "/customer")
 	public List<RsvtDTO> customerList(@RequestBody RsvtDTO rsvtDTO) throws Exception {

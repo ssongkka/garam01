@@ -26,6 +26,16 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 
+th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table > tbody > tr > td {
+    text-align: center;
+    vertical-align: middle;
+}
+
 .vertical-center {
     min-height: 100%;
     min-height: 70vh;
@@ -34,18 +44,18 @@ input[type="checkbox"] {
     align-items: center;
 }
 
-.card-song {
-    background: #ffffff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
-    border-radius: 0.3rem;
-    /* 5px rounded corners */
+.card {
+    border: none;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 0 1px rgb(20 20 31 / 5%), 0 1px 3px 0 rgb(20 20 31 / 15%);
+    background: white;
 }
 
 .card-title {
-    background: #ffffff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
-    border-radius: 0.3rem 0.3rem 0 0;
-    /* 5px rounded corners */
+    border: none;
+    border-radius: 0.25rem 0.25rem 0 0;
+    box-shadow: 0 0 0 1px rgb(20 20 31 / 5%), 0 1px 3px 0 rgb(20 20 31 / 15%);
+    background: white;
 }
 
 .ck-editor__editable {

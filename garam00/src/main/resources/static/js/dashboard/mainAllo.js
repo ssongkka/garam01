@@ -123,7 +123,7 @@ function getAlloList(day) {
                     data: JSON.stringify(params),
 
                     success: function (r) {
-
+                        getRsvtList(r);
                         let rst = new Array();
 
                         let ctmseqHtml = new Array();
@@ -219,6 +219,7 @@ function getAlloList(day) {
                     }
                 })
             } else {
+                getRsvtList(0);
                 resolve(0);
             }
         });

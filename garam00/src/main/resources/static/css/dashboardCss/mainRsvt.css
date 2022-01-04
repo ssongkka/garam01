@@ -1,20 +1,13 @@
 @charset "UTF-8";
 
-.tab-content {
-    padding-top: 5rem;
-}
-
 .rsvt-cst {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.rsvt {
-    width: 1200px;
-    margin-right: auto;
-    margin-left: auto;
-    padding: 1rem 10rem;
+.rsvt-form {
+    padding: 3rem 7rem;
 }
 
 .rsvt hr {
@@ -23,6 +16,17 @@
 
 .rsvt h3 {
     margin: 0 0 2rem;
+}
+
+.rsvt-main {
+    margin-top: 3rem;
+    margin-right: 40rem;
+    margin-left: 10rem;
+}
+
+.row {
+    margin-right: 0;
+    margin-left: 0;
 }
 
 .rsvt i {

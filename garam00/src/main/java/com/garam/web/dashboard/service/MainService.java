@@ -1,11 +1,11 @@
-package com.garam.web.rsvt.service;
+package com.garam.web.dashboard.service;
 
 import java.util.List;
 import java.util.Map;
 
-import com.garam.web.rsvt.dto.RsvtDTO;
+import com.garam.web.dashboard.dto.RsvtDTO;
 
-public interface RsvtService {
+public interface MainService {
 	public List<RsvtDTO> selectCustomerAll() throws Exception;
 
 	public List<RsvtDTO> selectCustomerName(RsvtDTO rsvtDTO) throws Exception;

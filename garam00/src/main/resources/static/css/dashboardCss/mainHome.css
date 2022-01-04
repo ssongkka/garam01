@@ -1,0 +1,126 @@
+.main-home {
+    margin-top: 3rem;
+    margin-right: 40rem;
+    margin-left: 10rem;
+}
+
+.home-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.home-main-item-1 {
+    display: flex;
+    gap: 2rem;
+}
+
+.home-main-item-11 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 145px;
+    flex: 1;
+}
+
+.home-main-item-111 {}
+
+.home-main-item-111:nth-child(1) {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+.home-main-item-111:nth-child(2) {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1rem;
+    font-size: 3rem;
+}
+.home-main-item-111:nth-child(3) {
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+.home-main-item-111:nth-child(4) {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-main-item-2 {
+    display: flex;
+    gap: 2rem;
+}
+
+.home-main-item-22 {
+    display: flex;
+    height: 100px;
+    flex: 1;
+    gap: 3rem;
+}
+
+.home-main-item-222:nth-child(1) {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 3rem;
+
+}
+.home-main-item-222:nth-child(2) {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+dl {
+    margin-bottom: 0;
+}
+
+.home-main-item-4 {
+    display: flex;
+    gap: 2rem;
+}
+
+.home-tap {
+    display: flex;
+    flex-direction: column;
+}
+
+ul {
+    margin-bottom: 0;
+}
+.home-tap-1 {}
+
+.home-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 1.3rem;
+    padding: 0.6rem;
+    list-style: none;
+}
+
+.home-main-item-44:nth-child(1) {
+    flex: 1;
+}
+
+.home-tb {
+    margin-bottom: 0;
+}
+
+.home-main-item-444:nth-child(1) {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    font-weight: 600;
+}

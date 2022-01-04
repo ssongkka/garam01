@@ -101,21 +101,63 @@
             </div>
         </aside>
 
-        <th:block layout:fragment="main"></th:block>
+        <main class="main">
+            <div class="tab-pane" role="tabpanel">
+                <div class="dd-main-nav">
+                    <!-- Nav tabs -->
+                    <ul class="dd-nav card" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#home" aria-controls="home" role="tab" data-toggle="tab">home</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#rsvt" aria-controls="rsvt" role="tab" data-toggle="tab">확인</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#allo" aria-controls="allo" role="tab" data-toggle="tab">배차관리</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#manage" aria-controls="manage" role="tab" data-toggle="tab">예약관리</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Tab panes -->
+                <div class="tab-content" style="padding-top: 5rem;">
+                    <div
+                        th:insert="dashboard/mainHome :: main-home"
+                        role="tabpanel"
+                        class="tab-pane active"
+                        id="home"></div>
+                    <div
+                        th:insert="dashboard/mainRsvt :: main-rsvt"
+                        role="tabpanel"
+                        class="rsvt row tab-pane"
+                        id="rsvt"></div>
+                    <div
+                        th:insert="dashboard/mainAllo :: main-allo"
+                        role="tabpanel"
+                        class="tab-pane"
+                        id="allo"></div>
+                    <div role="tabpanel" class="tab-pane" id="manage"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
-        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-        <script
-            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-        <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
 
-        <script src="/js/common/summernote-lite.js"></script>
-        <script src="/js/common/summernote-ko-KR.js"></script>
-        <script src="/js/common/common.js"></script>
-        <script src="/js/common/calendar.js"></script>
-        <script src="/js/common/calLayout.js"></script>
+<script src="/js/common/summernote-lite.js"></script>
+<script src="/js/common/summernote-ko-KR.js"></script>
+<script src="/js/common/common.js"></script>
+<script src="/js/common/calendar.js"></script>
+<script src="/js/common/calLayout.js"></script>
+<script src="/js/dashboard/mainHome.js"></script>
+<script src="/js/dashboard/mainRsvt.js"></script>
+<script src="/js/dashboard/mainAllo.js"></script>
 
-        <th:block layout:fragment="add-script"></th:block>
-
-    </body>
+</body>
 </html>

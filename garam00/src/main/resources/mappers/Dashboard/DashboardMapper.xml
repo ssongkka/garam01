@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.garam.web.rsvt.mapper.RsvtMapper">
+<mapper
+	namespace="com.garam.web.dashboard.mapper.DashboardMapper">
 
 	<sql id="customerColumns">
 		ctmseq , ctmno , ctmsepa , ctmname , ctmaddress , ctmtel1 ,
@@ -17,7 +18,7 @@
 	</sql>
 
 	<select id="selectCustomerAll"
-		resultType="com.garam.web.rsvt.dto.RsvtDTO">
+		resultType="com.garam.web.dashboard.dto.RsvtDTO">
 		SELECT
 
 		<include refid="customerColumns" />
@@ -26,8 +27,8 @@
 	</select>
 
 	<select id="selectCustomerName"
-		parameterType="com.garam.web.rsvt.dto.RsvtDTO"
-		resultType="com.garam.web.rsvt.dto.RsvtDTO">
+		parameterType="com.garam.web.dashboard.dto.RsvtDTO"
+		resultType="com.garam.web.dashboard.dto.RsvtDTO">
 		SELECT
 
 		<include refid="customerColumns" />
@@ -49,7 +50,7 @@
 	</select>
 
 	<insert id="insertCtm"
-		parameterType="com.garam.web.rsvt.dto.RsvtDTO">
+		parameterType="com.garam.web.dashboard.dto.RsvtDTO">
 		INSERT INTO
 		customer
 		(
@@ -76,7 +77,7 @@
 	</insert>
 
 	<insert id="insertRsvt"
-		parameterType="com.garam.web.rsvt.dto.RsvtDTO">
+		parameterType="com.garam.web.dashboard.dto.RsvtDTO">
 
 		INSERT INTO
 		rsvt
@@ -147,8 +148,8 @@
 	</insert>
 
 	<select id="selectAlloCTM"
-		parameterType="com.garam.web.rsvt.dto.RsvtDTO"
-		resultType="com.garam.web.rsvt.dto.RsvtDTO">
+		parameterType="com.garam.web.dashboard.dto.RsvtDTO"
+		resultType="com.garam.web.dashboard.dto.RsvtDTO">
 		SELECT
 		rsvt.rsvt,
 		customer.ctmseq, customer.ctmsepa,
@@ -182,8 +183,8 @@
 		customer.ctmseq
 	</select>
 	<select id="selectAlloRSVT"
-		parameterType="com.garam.web.rsvt.dto.RsvtDTO"
-		resultType="com.garam.web.rsvt.dto.RsvtDTO">
+		parameterType="com.garam.web.dashboard.dto.RsvtDTO"
+		resultType="com.garam.web.dashboard.dto.RsvtDTO">
 		SELECT *
 
 		FROM
@@ -205,8 +206,8 @@
 		customer.ctmseq
 	</select>
 	<select id="selectAlloOPER"
-		parameterType="com.garam.web.rsvt.dto.RsvtDTO"
-		resultType="com.garam.web.rsvt.dto.RsvtDTO">
+		parameterType="com.garam.web.dashboard.dto.RsvtDTO"
+		resultType="com.garam.web.dashboard.dto.RsvtDTO">
 
 
 		SELECT rsvt.rsvtseq, operation_info.operseq, operation_info.opernum,
@@ -239,6 +240,6 @@
 		#{stday})) AND operation_info.operday = #{stday}
 		ORDER BY
 		rsvt.ctmno);
-
 	</select>
+
 </mapper>

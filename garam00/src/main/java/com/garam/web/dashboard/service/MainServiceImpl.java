@@ -1,4 +1,4 @@
-package com.garam.web.rsvt.service;
+package com.garam.web.dashboard.service;
 
 import java.io.Console;
 import java.time.LocalDate;
@@ -9,16 +9,16 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.garam.web.rsvt.dto.RsvtDTO;
-import com.garam.web.rsvt.mapper.RsvtMapper;
+import com.garam.web.dashboard.dto.RsvtDTO;
+import com.garam.web.dashboard.mapper.DashboardMapper;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class RsvtServiceImpl implements RsvtService {
+public class MainServiceImpl implements MainService {
 
-	private final RsvtMapper rsvtMapper;
+	private final DashboardMapper rsvtMapper;
 
 	@Override
 	public List<RsvtDTO> selectCustomerAll() throws Exception {

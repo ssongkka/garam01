@@ -13,7 +13,9 @@
 		, event
 	</sql>
 
-	<select id="selectCalendarEvent" parameterType="com.garam.calendar.domain.CalendarDTO" resultType="com.garam.calendar.domain.CalendarDTO">
+	<select id="selectCalendarEvent"
+		parameterType="com.garam.calendar.domain.CalendarDTO"
+		resultType="com.garam.calendar.domain.CalendarDTO">
 		SELECT
 
 		<include refid="calendarColumns" />
