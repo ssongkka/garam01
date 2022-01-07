@@ -18,6 +18,36 @@ function toStringByFormatting(source, delimiter = '-') {
     return [year, month, day].join(delimiter);
 }
 
+function betweenDate(sday, nday, eday) {
+    var date_arr1 = sday.split("-");
+    var date_arr2 = nday.split("-");
+    var date_arr3 = eday.split("-");
+
+    var stDate = new Date(date_arr1[0], date_arr1[1], date_arr1[2]);
+    var nDate = new Date(date_arr2[0], date_arr2[1], date_arr2[2]);
+    var endDate = new Date(date_arr3[0], date_arr3[1], date_arr3[2]);
+
+    var btMs1 = endDate.getTime() - stDate.getTime();
+    var btMs2 = nDate.getTime() - stDate.getTime();
+
+    var bak = btMs1 / (1000 * 60 * 60 * 24);
+    var il = bak + 1;
+    var bet = '';
+
+    if (sday == nday) {
+        bet = '출발';
+    } else if (nday == eday) {
+        bet = '도착';
+    } else {
+        bet = (btMs2 / (1000 * 60 * 60 * 24)) + 1 + '일';
+    }
+
+    const rtn = '(' + bak + '박' + il + '일/' + bet + ')';
+
+    console.log("일수 차이는?? " + rtn);
+    return rtn;
+}
+
 function resize(obj) {
     obj.style.height = "1px";
     obj.style.height = (12 + obj.scrollHeight) + "px";

@@ -32,7 +32,8 @@ function getAlloList(day) {
             };
 
             const params = {
-                "stday": day
+                "stday": day,
+                "endday": day
             };
 
             $.ajax({
@@ -45,6 +46,7 @@ function getAlloList(day) {
                 success: function (r) {
 
                     if (r.length > 0) {
+                        console.log("길이는!!??  " + r.length);
                         let ctmseqArr = new Array();
                         let htmls = '';
                         for (let i = 0; i < r.length; i++) {
@@ -112,7 +114,8 @@ function getAlloList(day) {
                 };
 
                 const params = {
-                    "stday": day
+                    "stday": day,
+                    "endday": day
                 };
 
                 $.ajax({
@@ -123,7 +126,7 @@ function getAlloList(day) {
                     data: JSON.stringify(params),
 
                     success: function (r) {
-                        getRsvtList(r);
+                        getRsvtList(r, day);
                         let rst = new Array();
 
                         let ctmseqHtml = new Array();
@@ -133,6 +136,10 @@ function getAlloList(day) {
 
                         let cnt = 0;
                         for (let i = 0; i < r.length; i++) {
+                            let suk = '';
+                            if (r[i].stday != r[i].endday) {
+                                suk = betweenDate(r[i].stday, day, r[i].endday);
+                            }
 
                             rst[i] = r[i].rsvt;
 
@@ -144,14 +151,14 @@ function getAlloList(day) {
                             htmls += '<div class="allo-detail">';
                             htmls += '<div class="allo-detail-item">';
                             htmls += '<blockquote>';
-                            htmls += '<p>' + r[i].desty + '</p>';
+                            htmls += '<p>' + r[i].desty + suk + '</p>';
                             htmls += '</blockquote>';
                             htmls += '</div>';
                             htmls += '<div class="allo-detail-item">';
                             htmls += '<small>' + r[i].rsvpstp + '</small>';
                             htmls += '</div>';
                             htmls += '<div class="allo-detail-item">';
-                            htmls += '<small>' + r[i].stt + ' / ' + r[i].endt + '</small>';
+                            htmls += '<small>' + r[i].stt + '&nbsp;&#47;&nbsp;' + r[i].endt + '</small>';
                             htmls += '</div>';
                             htmls += '<div class="allo-detail-item">';
 
@@ -170,7 +177,7 @@ function getAlloList(day) {
                             htmls += '<div class="allo-allo form-group">';
 
                             for (let k = 0; k < r[i].num; k++) {
-                                htmls += '<div class="allo-allo-item col-xs-6 col-lg-4">';
+                                htmls += '<div class="allo-allo-item col-xs-12 col-lg-4">';
                                 htmls += ' <input type="hidden" id="' + r[i].rsvtseq + '-' + (
                                     k + 1
                                 ) + '" value="">';
@@ -235,7 +242,8 @@ function getAlloList(day) {
                 };
 
                 const params = {
-                    "stday": day
+                    "stday": day,
+                    "endday": day
                 };
 
                 $.ajax({

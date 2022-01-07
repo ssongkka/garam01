@@ -28,79 +28,9 @@ $(document).on('click', '#btnUserPlus', function () {
     }
 });
 
-function setCalWhite(e) {
-    const day = calen_Rsvt.setCalclss(e);
-
+function setStEdDay(day) {
     $('#stday').val(day);
     $('#endday').val(day);
-    this.setBigDay(day);
-    this.setCaldays(day);
-    getAlloList(day);
-}
-
-function setBigDay(day) {
-    const tmpArr = day.split("-");
-
-    const date = new Date(tmpArr[0], tmpArr[1] + 1, tmpArr[2]);
-
-    $('#bigDay').empty();
-    $('#bigDay').prepend(
-        tmpArr[0] + "년 " + tmpArr[1] + "월 " + tmpArr[2] + "일 " + calen.getDayOfWeek(date.getDay())
-    );
-}
-
-function setCaldays(day) {
-
-    const url = "/calendar/event";
-    const headers = {
-        "Content-Type": "application/json",
-        "X-HTTP-Method-Override": "POST"
-    };
-
-    const params = {
-        "stD": day,
-        "endD": day
-    };
-
-    $.ajax({
-        url: url,
-        type: "POST",
-        headers: headers,
-        dataType: "json",
-        data: JSON.stringify(params),
-
-        success: function (r) {
-            let mid = '';
-            if (!!r[0].holiday) {
-                mid += '<p>' + r[0].holiday + '</p>';
-            }
-            if (!!r[0].anniversary) {
-                mid += '<p>' + r[0].anniversary + '</p>';
-            }
-            if (!!r[0].season) {
-                mid += '<p>' + r[0].season + '</p>';
-            }
-            if (!!r[0].etc) {
-                mid += '<p>' + r[0].etc + '</p>';
-            }
-
-            if (!mid) {
-                mid += `<p>이벤트 없음</p>`;
-            }
-
-            $('#midday').html(mid);
-
-            let cal = '';
-
-            if (!!r[0].lunarCal) {
-                cal = '음력 ' + r[0].lunarCal;
-            } else {
-                cal = '음력 정보없음';
-            }
-
-            $('#cal1').html(cal);
-        }
-    });
 }
 
 $("#ctmname").change(function () {
@@ -129,8 +59,6 @@ $("#ctmname").change(function () {
         dataType: "json",
         data: JSON.stringify(params),
         success: function (r) {
-            console.log('qdwdwwqd');
-            console.log(r[0]);
             if (r[0] != null) {
                 $('#ctmno').val('');
                 $('#radio0').prop('checked', true);
@@ -178,23 +106,22 @@ $(document).on('change', '#endday', function () {
     const origin = $("#endday").val();
     const std = new Date($("#stday").val());
     const edd = new Date($("#endday").val());
-    console.log(std);
-    console.log(edd);
 
     var dateDiff = Math.ceil((edd.getTime() - std.getTime()) / (1000 * 3600 * 24));
 
-    console.log(dateDiff);
-
     if (dateDiff === 0) {
-        $("#daynight").text('(당일)');
+        $("#daynight").text(' (당일)');
+        $("#daynight").css('color', 'blue');
     } else if (dateDiff > 0) {
         const day = '(' + dateDiff + '박' + (
             dateDiff + 1
         ) + '일)';
         $("#daynight").text(day);
+        $("#daynight").css('color', 'blue');
     } else {
         $("#endday").val(origin);
-        alert('도착일을 확인해주세요.');
+        $("#daynight").text('  도착일을 확인해주세요!!!');
+        $("#daynight").css('color', 'red');
     }
 });
 
@@ -244,7 +171,6 @@ $(document).on('click', '#ername', function () {
 });
 
 $(document).on('keydown', 'input', function (eInner) {
-    console.log($('#ctmname').is(":focus"));
     if ($('#ctmname').is(":focus")) {
         var keyValue = eInner.which; //enter key
         if (keyValue == 8 || keyValue == 27 || keyValue == 46) {
@@ -269,7 +195,12 @@ function ernm() {
 }
 
 $(document).on('click', '#insert-rsvt', function () {
-    console.log($('#ctmno').val());
+    if (condition) {
+        
+    } else {
+        
+    }
+
     let money = $('#conm2')
         .val()
         .replaceAll(",", "");

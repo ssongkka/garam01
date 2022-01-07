@@ -24,4 +24,7 @@ public interface DashboardMapper {
 	public List<RsvtDTO> selectAlloRSVT(RsvtDTO rsvtDTO) throws Exception;
 
 	public List<RsvtDTO> selectAlloOPER(RsvtDTO rsvtDTO) throws Exception;
+
+	public List<RsvtDTO> selectWeekBusNum(RsvtDTO rsvtDTO) throws Exception;
+
 }

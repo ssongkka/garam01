@@ -173,7 +173,7 @@
 		#{stday})
 		AND
 		(rsvt.endday <![CDATA[>=]]>
-		#{stday})
+		#{endday})
 
 		GROUP BY
 		customer.ctmseq
@@ -199,7 +199,7 @@
 		#{stday})
 		AND
 		(rsvt.endday <![CDATA[>=]]>
-		#{stday})
+		#{endday})
 
 		ORDER BY
 		customer.ctmsepa,
@@ -237,9 +237,28 @@
 		#{stday})
 		AND
 		(rsvt.endday <![CDATA[>=]]>
-		#{stday})) AND operation_info.operday = #{stday}
+		#{endday})) AND operation_info.operday = #{stday}
 		ORDER BY
 		rsvt.ctmno);
+	</select>
+
+	<select id="selectWeekBusNum"
+		parameterType="com.garam.web.dashboard.dto.RsvtDTO"
+		resultType="com.garam.web.dashboard.dto.RsvtDTO">
+		SELECT
+
+		bus, num
+
+		FROM
+		rsvt
+
+		WHERE
+
+		(rsvt.stday <![CDATA[<=]]>
+		#{stday})
+		AND
+		(rsvt.endday <![CDATA[>=]]>
+		#{endday})
 	</select>
 
 </mapper>

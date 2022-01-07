@@ -119,8 +119,7 @@
     background: white;
     width: 30rem;
     position: fixed;
-    margin-top: 9.5rem;
-    padding: 2rem;
+    padding: 12rem 2rem 2rem;
     top: 0;
     bottom: 0;
     right: 0;
@@ -137,4 +136,25 @@
     align-items: center;
     gap: 1rem;
     font-size: 1.8rem;
+}
+
+@media (max-width:1024px) {
+    .allo-side {
+        display: none;
+    }
+    .allo-main {
+        margin-right: 0;
+        padding: 2rem;
+    }
+
+    .allo small {
+        padding: 0 0.5rem;
+    }
+
+    .allo-detail {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
 }

@@ -62,11 +62,19 @@ class cal {
 
     setCalendar(now_D, day) {
         let rtn = "";
+        let d = '';
 
-        $("#yearMonth").empty();
-        $("#yearMonth").prepend('<strong>' + now_D.getFullYear() + '년 ' + (
-            now_D.getMonth() + 1
-        ) + "월</strong>");
+        if ((now_D.getMonth() + 1) < 10) {
+            d = now_D.getFullYear() + '-0' + (
+                now_D.getMonth() + 1
+            );
+        } else {
+            d = now_D.getFullYear() + '-' + (
+                now_D.getMonth() + 1
+            );
+        }
+
+        $("#yearMonth").val(d);
 
         const check = now_D.getMonth();
         let stD = this.getCalStD(now_D);

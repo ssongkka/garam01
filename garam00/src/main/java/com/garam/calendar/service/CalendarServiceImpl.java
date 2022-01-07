@@ -1,6 +1,6 @@
 package com.garam.calendar.service;
 
-import java.util.Collections;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +17,16 @@ public class CalendarServiceImpl implements CalendarService {
 
 	@Override
 	public List<CalendarDTO> selectCalendarEvent(CalendarDTO calendarDTO) throws Exception {
-		List<CalendarDTO> list = Collections.emptyList();
 
-		list = calendarMapper.selectCalendarEvent(calendarDTO);
+		if (calendarDTO.getEndD() == null) {
+			String[] tmpArr = calendarDTO.getStD().split("-");
+			String tmp = LocalDate
+					.of(Integer.parseInt(tmpArr[0]), Integer.parseInt(tmpArr[1]), Integer.parseInt(tmpArr[2]))
+					.plusDays(6).toString();
+			calendarDTO.setEndD(tmp);
+		}
+
+		List<CalendarDTO> list = calendarMapper.selectCalendarEvent(calendarDTO);
 
 		return list;
 	}

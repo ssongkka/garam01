@@ -18,8 +18,6 @@
 
 html {
     font-size: 62.5%;
-    /* scroll-padding-top: 9rem; */
-    /* scroll-behavior: smooth; */
 }
 
 body {}
@@ -30,6 +28,20 @@ section {
 
 #yearMonth {
     font-size: 1.5rem;
+    flex: 1;
+    width: 14rem;
+}
+
+#fnDownMonth {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#fnUpMonth {
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 #bigDay {}
@@ -47,20 +59,6 @@ section {
     text-transform: uppercase;
 }
 
-.btn {
-    /* margin-top: 1rem;
-    display: inline-block;
-    padding: 0.9rem 3rem;
-    font-size: 1.7rem;
-    color: #fff;
-    background: var(--main-color);
-    cursor: pointer; */
-}
-
-.btn:hover {
-    /* letter-spacing: 0.2rem; */
-}
-
 .header {
     background: var(--bg);
     display: flex;
@@ -71,7 +69,7 @@ section {
     left: 0;
     right: 0;
     height: 5rem;
-    z-index: 1000;
+    z-index: 2000;
 }
 
 .header .logo {
@@ -264,13 +262,21 @@ blockquote {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    font-size: 1.6rem;
+    background: #f6f7f9;
     padding: 1rem;
-    list-style: none;
+    box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.5);
 }
 
-@media (max-width:768px) {
+.dd-nav li {
+    flex: 1;
+}
 
+.tab-cont {
+    padding-top: 6rem;
+}
+
+@media (max-width:1024px) {
+    html {}
     .header .logo {
         width: 8rem;
     }
@@ -280,12 +286,7 @@ blockquote {
     }
 
     .header .hd-icon {
-        position: absolute;
-        top: 5rem;
-        right: 0;
-        left: 0;
-        height: 10rem;
-        background: #fff;
+        display: none;
     }
 
     .header .hd-icon div {
@@ -328,12 +329,28 @@ blockquote {
         min-height: calc(100vh - 0rem);
     }
 
-}
+    .dd-main-nav {
+        z-index: 1050;
+        position: fixed;
+        left: 0;
+        right: 0;
 
-@media (max-width:450px) {
-
-    html {
-        font-size: 50%;
+        display: flex;
+        flex-direction: column;
     }
 
+    .tab-phone {
+        margin-top: 6rem;
+    }
+
+    .tab-cont {
+        padding-top: 13rem;
+    }
+}
+
+@media (max-width:992px) {
+
+    html {
+        /* font-size: 50%; */
+    }
 }

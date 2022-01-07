@@ -19,9 +19,7 @@
 }
 
 .rsvt-main {
-    margin-top: 3rem;
-    margin-right: 40rem;
-    margin-left: 10rem;
+    padding: 3rem 55rem 3rem 25rem;
 }
 
 .row {
@@ -116,18 +114,20 @@
     box-shadow: none;
 }
 
-@media (max-width:768px) {
+@media (max-width:1024px) {
     .header .hd-icon {
         display: none;
     }
 
-    .rsvt {
-        width: 98%;
-        margin: 1rem;
+    .rsvt {}
+
+    .rsvt-l {}
+
+    .rsvt-main {
         padding: 1rem;
     }
 
-    .rsvt-l {
-        padding: 5rem;
+    .rsvt-form {
+        padding: 3rem 1rem;
     }
 }

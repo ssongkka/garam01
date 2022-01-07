@@ -34,7 +34,29 @@
 .dash-cal-h {
     display: flex;
     justify-content: space-evenly;
-    height: 15%;
+}
+.dash-cal-d {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dash-cal-d-item:nth-child(1) {
+    width: 100%;
+}
+.dash-cal-d-item:nth-child(1):hover {
+    background: red;
+}
+.dash-cal-d-item:nth-child(2) {
+    width: 100%;
+}
+.dash-cal-d-item:nth-child(3) {
+    width: 100%;
+}
+.dash-cal-d-item:nth-child(3):hover {
+    background: red;
+}
+.dash-cal-d-item:nth-child(4) {
+    width: 100%;
 }
 
 .dash-cal-h-item {
@@ -51,9 +73,7 @@
     background: red;
 }
 
-.dash-cal-h-item2 {
-    width: 30%;
-}
+.dash-cal-h-item2 {}
 
 .dash-cal-h-item3 {
     width: 5%;
@@ -133,4 +153,30 @@
 .dash-cal-h-item4 {
     display: flex;
     gap: 0.7rem;
+    padding-left: 0.5rem;
+}
+
+.dash-cal-d {
+    display: none;
+}
+
+#btnYesD {}
+#btnToD {}
+#btnTomD {}
+
+@media (max-width:1024px) {
+    .dash-phone-fix {}
+    .dash-cal-d {
+        background: #f6f7f9;
+
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        text-align: center;
+        gap: 2rem;
+        padding: 1rem 3rem;
+
+        left: 0;
+        right: 0;
+    }
 }

@@ -165,10 +165,7 @@ public class MainServiceImpl implements MainService {
 	public int insertManyRsvt(List<Map<String, Object>> map) throws Exception {
 
 		for (int i = 0; i < map.size(); i++) {
-			System.out.println("아앙ㅇ앙ㅇㅇ아아아   " + map.get(i));
-
 			if (map.get(i).get("endt").equals("") || map.get(i).get("endt").toString().length() == 0) {
-				System.out.println(("조조좆지오지ㅣ  " + map.get(i).get("endt")));
 				map.get(i).replace("endt", null);
 			}
 
@@ -182,5 +179,12 @@ public class MainServiceImpl implements MainService {
 		int rtn = rsvtMapper.insertManyRsvt(rsvt);
 
 		return rtn;
+	}
+
+	@Override
+	public List<RsvtDTO> selectWeekBusNum(RsvtDTO rsvtDTO) throws Exception {
+		List<RsvtDTO> list = rsvtMapper.selectWeekBusNum(rsvtDTO);
+
+		return list;
 	}
 }
