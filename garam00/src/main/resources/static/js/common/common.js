@@ -215,3 +215,41 @@ function fnNullCheck(str) {
         return 1;
     }
 }
+
+function setImageFromFile(input, expression, expression2, id) {
+    const aaa = $(id)
+        .val()
+        .split('\\');
+    const bbb = aaa[aaa.length - 1].split('.');
+    const imgName = bbb[1];
+    if (input.files && input.files[0]) {
+        if (imgName == 'png' || imgName == 'jpg' || imgName == 'bmp' || imgName == 'gif') {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $(expression).attr('src', e.target.result);
+                $(expression2).val(e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            alert("이미지 파일이 아닙니다.\n'png', 'jpg', 'bmp', 'gif' 형식의 파일을 선택해 주세요.");
+            $(expression).attr('src', 'img/employee/emp.png');
+            $(id).val('');
+        }
+    } else {
+        $(expression).attr('src', 'img/employee/emp.png');
+    }
+}
+
+function getImageFromFile(input, expression) {
+    let rtn = '';
+    console.log(input);
+    if (input.files && input.files[0]) {
+        console.log("ccccaaaa");
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            console.log("aaadddd" + e.target.result);
+            rtn = e.target.result;
+        }
+    }
+    return rtn;
+}

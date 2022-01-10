@@ -12,6 +12,17 @@
     --side-size: 250px;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    /* transition: 0.2s linear; */
+}
+
 html {
     overflow-y: scroll;
 }
@@ -24,6 +35,12 @@ input[type="checkbox"] {
     /* 	width: 30px; Desired width */
     /* 	height: 30px; Desired height */
     cursor: pointer;
+}
+input[type="text"] {
+    -webkit-ime-mode: active;
+    -moz-ime-mode: active;
+    -ms-ime-mode: active;
+    ime-mode: active;
 }
 
 th {

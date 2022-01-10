@@ -11,6 +11,7 @@ import com.garam.employee_info.entity.employee_infoRepository;
 import com.garam.vehicle_info.entity.vehicle_infoRepository;
 import com.garam.web.dashboard.mapper.DashboardMapper;
 import com.garam.web.dashboard.service.MainService;
+import com.garam.web.employee.mapper.EmployeeMapper;
 
 @SpringBootTest
 class Garam00ApplicationTests {
@@ -24,6 +25,8 @@ class Garam00ApplicationTests {
 	private MainService ccc;
 	@Autowired
 	private DashboardMapper ddd;
+	@Autowired
+	private EmployeeMapper eee;
 
 	@Test
 	void contextLoads() {
@@ -40,6 +43,6 @@ class Garam00ApplicationTests {
 
 	@Test
 	void findAll222() throws Exception {
-		ddd.selectCustomerAll();
+//		eee.selectEmpAll();
 	}
 }

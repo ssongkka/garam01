@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 .main-home {
     padding: 3rem 40rem 3rem 10rem;
 }
@@ -88,13 +90,12 @@ h6 {
     align-items: center;
     justify-items: center;
     justify-content: center;
-    gap: 0.1rem;
+    gap: 0.5rem;
 }
 
 .home-main-item-22-1-item {
     width: 100%;
     height: 100%;
-    background: blue;
     display: flex;
     justify-content: center;
     align-items: center;
