@@ -72,7 +72,7 @@ function getEmpInfo(id) {
                 if (r[0].id) {
                     $('#emp00').val(r[0].id);
                 } else {
-                    $('#emp01').val(0);
+                    $('#emp01').val('');
                 }
 
                 if (r[0].company) {
@@ -209,6 +209,12 @@ function getEmpInfo(id) {
                     $('#emp24').val('');
                 }
 
+                if (r[0].img) {
+                    $('#empPic').attr('src', empFolder + r[0].img);
+                } else {
+                    $('#empPic').attr('src', 'img/employee/emp.png');
+                }
+
             }
         })
     });
@@ -229,18 +235,9 @@ $(document).on('keydown', 'input', function (eInner) {
     }
 });
 
-const base = {
-    _baseImg: '멍멍이',
-    get baseImg() {
-        return this._baseImg
-    },
-    set baseImg(value) {
-        this._baseImg = value;
-    }
-};
-
 $('#imgSelector').change(function () {
-    setImageFromFile(this, '#emp-pic-pre', '#emp-pic-pre1', '#imgSelector')
+    setImageFromFile(this, '#emp-pic-pre', '#imgSelector')
+    console.log("dasdadwad  " + $('#imgSelector').val());
 });
 
 $(document).on('click', '#md-Ch', function () {
@@ -255,6 +252,7 @@ $(document).on('click', '#md-New', function () {
 function setEmpCh() {
     console.log($('#emp03').children().text());
     $('#id').val($('#emp00').val());
+    $('#emp-id').val($('#emp00').val());
     $('#name').val($('#emp03').children().text());
     $('#birthday').val($('#emp05-1').val());
     $('#gender').val($('#emp06').children().text());
@@ -288,7 +286,7 @@ function setEmpCh() {
 }
 
 function setEmpClr() {
-    $('#id').val(0);
+    $('#id').val('');
     $('#name').val('');
     $('#birthday').val('');
     $('#gender').val('');
@@ -300,7 +298,8 @@ function setEmpClr() {
     $('#address').val('');
     $('#garage').val('');
 
-    $('#joind').val('');
+    const now = toStringByFormatting(new Date());
+    $('#joind').val(now);
     $('#endd').val('');
 
     $('#drvl').val('');
@@ -314,61 +313,101 @@ function setEmpClr() {
 
     $('#memo').val('');
 
-    $('#basem').val('');
-    $('#kukm').val('');
-    $('#gunm').val('');
-    $('#gom').val('');
-    $('#sanm').val('');
+    $('#basem').val(0);
+    $('#kukm').val(0);
+    $('#gunm').val(0);
+    $('#gom').val(0);
+    $('#sanm').val(0);
 }
 
 $(document).on('click', '#btn-insert', function () {
-    // insertEmp();
-    var images = $('#emp-pic-pre').attr('src');
-    console.log("gggggggg  " + images);
-    alert(images);
+    if ($('#id').val().length > 0) {
+        insertEmp(1);
+    } else {
+        insertEmp(0);
+    }
 });
 
-function insertEmp() {
-    const url = "/emp/empInsert";
-    const headers = {
-        "Content-Type": "application/json",
-        "X-HTTP-Method-Override": "POST"
-    };
-    const params = {
-        "company": $('#company').val(),
-        "kind": $('#kind').val(),
-        "joind": $('#joind').val(),
-        "endd": $('#endd').val(),
-        "name": $('#name').val(),
-        "gender": $('#gender').val(),
-        "birthday": $('#birthday').val(),
-        "phone1": $('#phone1').val(),
-        "phone2": $('#phone2').val(),
-        "address": $('#address').val(),
-        "garage": $('#garage').val(),
-        "bosum": $('#bosum').val(),
-        "bobuj": $('#bobuj').val(),
-        "drvl": $('#drvl').val(),
-        "busl": $('#busl').val(),
-        "memoid": $('#memo').val(),
-        "bank": $('#bank').val(),
-        "gye": $('#gye').val(),
-        "gyename": $('#gyename').val(),
-        "basem": $('#basem').val(),
-        "kukm": $('#kukm').val(),
-        "gunm": $('#gunm').val(),
-        "gom": $('#gom').val(),
-        "sanm": $('#sanm').val(),
-        "imgIn": $('#emp-pic-pre1').val()
-    };
-    $.ajax({
-        url: url,
-        type: "POST",
-        headers: headers,
-        dataType: "json",
-        data: JSON.stringify(params),
-        success: function (r) {
-            console.log("결과는!?   " + r);
-        }
-    })
+function insertEmp(tp) {
+    insertPic().then(insertContent);
+
+    function insertPic() {
+        return new Promise(function (resolve, reject) {
+            var form = $('#emp-form')[0];
+            // Create an FormData object
+            var data = new FormData(form);
+
+            const url = "/emp/empInsertPic";
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: url,
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+                success: function (r) {
+                    resolve(r);
+                }
+            })
+        });
+    }
+
+    function insertContent(result) {
+        return new
+        Promise(function (resolve, reject) {
+            const url = "/emp/empInsert";
+            const headers = {
+                "Content-Type": "application/json",
+                "X-HTTP-Method-Override": "POST"
+            };
+
+            console.log("asdddd  " + result);
+            console.log("asdddd  " + tp);
+            if (result == 1) {} else if (result == 2) {} else {
+                const params = {
+                    "tp": tp,
+                    "id": result,
+                    "company": '(주)새천년관광',
+                    "kind": $('#kind').val(),
+                    "joind": $('#joind').val(),
+                    "endd": $('#endd').val(),
+                    "name": $('#name').val(),
+                    "gender": $('#gender').val(),
+                    "birthday": $('#birthday').val(),
+                    "phone1": $('#phone1').val(),
+                    "phone2": $('#phone2').val(),
+                    "address": $('#address').val(),
+                    "garage": $('#garage').val(),
+                    "bosum": $('#bosum').val(),
+                    "bobuj": $('#bobuj').val(),
+                    "drvl": $('#drvl').val(),
+                    "busl": $('#busl').val(),
+                    "memo": $('#memo').val(),
+                    "bank": $('#bank').val(),
+                    "gye": $('#gye').val(),
+                    "gyename": $('#gyename').val(),
+                    "basem": $('#basem').val(),
+                    "kukm": $('#kukm').val(),
+                    "gunm": $('#gunm').val(),
+                    "gom": $('#gom').val(),
+                    "sanm": $('#sanm').val(),
+                    "img": $('#imgSelector').val()
+                };
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    headers: headers,
+                    dataType: "json",
+                    data: JSON.stringify(params),
+                    success: function (r) {
+                        console.log("결과는!?   " + r);
+                    }
+                })
+            }
+
+        });
+    }
+
 }

@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.garam.web.employee.dto.EmployeeInfoDTO;
 import com.garam.web.employee.service.EmployeeService;
@@ -21,7 +23,23 @@ public class RestEmployeeController {
 
 	@PostMapping(value = "/empInsert")
 	public int empInsert(@RequestBody EmployeeInfoDTO employeeInfoDTO) throws Exception {
+		System.out.println("asdfasdf " + employeeInfoDTO.getTp());
 		int rtn = employeeService.insertEmp(employeeInfoDTO);
+
+		return rtn;
+	}
+
+	@PostMapping(value = "/empInsertPic")
+	public String empInsertPic(@RequestParam("emp-id") String id, @RequestParam("uploadfile") MultipartFile[] files)
+			throws Exception {
+		System.out.println("무무무무무무    " + id);
+		System.out.println("무무무무무무    " + files.length);
+		System.out.println("무무무무무무    " + files[0]);
+		System.out.println("무무무무무무    " + files);
+
+		String rtn = "";
+
+		rtn = employeeService.uploadEmpPic(id, files);
 
 		return rtn;
 	}

@@ -4,6 +4,8 @@ class dateUtil {
     }
 }
 
+const empFolder = 'http://192.168.35.136:8000/list/HDD2/src/img/emp/';
+
 function leftPad(value) {
     if (value >= 10) {
         return value;
@@ -216,18 +218,19 @@ function fnNullCheck(str) {
     }
 }
 
-function setImageFromFile(input, expression, expression2, id) {
+function setImageFromFile(input, expression, id) {
     const aaa = $(id)
         .val()
         .split('\\');
     const bbb = aaa[aaa.length - 1].split('.');
     const imgName = bbb[1];
     if (input.files && input.files[0]) {
+        console.log(input.files);
+        console.log(input.files[0]);
         if (imgName == 'png' || imgName == 'jpg' || imgName == 'bmp' || imgName == 'gif') {
             var reader = new FileReader();
             reader.onload = function (e) {
                 $(expression).attr('src', e.target.result);
-                $(expression2).val(e.target.result);
             }
             reader.readAsDataURL(input.files[0]);
         } else {
@@ -238,18 +241,4 @@ function setImageFromFile(input, expression, expression2, id) {
     } else {
         $(expression).attr('src', 'img/employee/emp.png');
     }
-}
-
-function getImageFromFile(input, expression) {
-    let rtn = '';
-    console.log(input);
-    if (input.files && input.files[0]) {
-        console.log("ccccaaaa");
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            console.log("aaadddd" + e.target.result);
-            rtn = e.target.result;
-        }
-    }
-    return rtn;
 }

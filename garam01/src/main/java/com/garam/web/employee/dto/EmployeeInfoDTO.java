@@ -1,10 +1,10 @@
 package com.garam.web.employee.dto;
 
-import java.util.Arrays;
-
-import com.garam.web.Utils.Utils;
-
 public class EmployeeInfoDTO {
+
+	// 사원번호
+	private int tp;
+
 	// 사원번호
 	private String id;
 
@@ -86,10 +86,8 @@ public class EmployeeInfoDTO {
 	// 산재보험
 	private Integer sanm;
 
-	// 사진
+	// 이미지파일이름
 	private String img;
-
-	private byte[] imgInOut;
 
 	// 재직여부
 	private Integer trash;
@@ -97,6 +95,14 @@ public class EmployeeInfoDTO {
 	private String car_number;
 
 	private String vehicle;
+
+	public int getTp() {
+		return tp;
+	}
+
+	public void setTp(int tp) {
+		this.tp = tp;
+	}
 
 	public String getId() {
 		return id;
@@ -322,14 +328,6 @@ public class EmployeeInfoDTO {
 		this.img = img;
 	}
 
-	public byte[] getImgInOut() {
-		return imgInOut;
-	}
-
-	public void setImgInOut(byte[] imgInOut) {
-		this.imgInOut = imgInOut;
-	}
-
 	public Integer getTrash() {
 		return trash;
 	}
@@ -352,6 +350,29 @@ public class EmployeeInfoDTO {
 
 	public void setVehicle(String vehicle) {
 		this.vehicle = vehicle;
+	}
+
+	@Override
+	public String toString() {
+		return "EmployeeInfoDTO [tp=" + tp + ", id=" + id + ", company=" + company + ", kind=" + kind + ", joind="
+				+ joind + ", joindDay=" + joindDay + ", endd=" + endd + ", name=" + name + ", gender=" + gender
+				+ ", birthday=" + birthday + ", age=" + age + ", phone1=" + phone1 + ", phone2=" + phone2 + ", address="
+				+ address + ", garage=" + garage + ", bosum=" + bosum + ", bobuj=" + bobuj + ", drvl=" + drvl
+				+ ", busl=" + busl + ", memo=" + memo + ", bank=" + bank + ", gye=" + gye + ", gyename=" + gyename
+				+ ", basem=" + basem + ", kukm=" + kukm + ", gunm=" + gunm + ", gom=" + gom + ", sanm=" + sanm
+				+ ", img=" + img + ", trash=" + trash + ", car_number=" + car_number + ", vehicle=" + vehicle
+				+ ", getTp()=" + getTp() + ", getId()=" + getId() + ", getCompany()=" + getCompany() + ", getKind()="
+				+ getKind() + ", getJoind()=" + getJoind() + ", getJoindDay()=" + getJoindDay() + ", getEndd()="
+				+ getEndd() + ", getName()=" + getName() + ", getGender()=" + getGender() + ", getBirthday()="
+				+ getBirthday() + ", getAge()=" + getAge() + ", getPhone1()=" + getPhone1() + ", getPhone2()="
+				+ getPhone2() + ", getAddress()=" + getAddress() + ", getGarage()=" + getGarage() + ", getBosum()="
+				+ getBosum() + ", getBobuj()=" + getBobuj() + ", getDrvl()=" + getDrvl() + ", getBusl()=" + getBusl()
+				+ ", getMemo()=" + getMemo() + ", getBank()=" + getBank() + ", getGye()=" + getGye() + ", getGyename()="
+				+ getGyename() + ", getBasem()=" + getBasem() + ", getKukm()=" + getKukm() + ", getGunm()=" + getGunm()
+				+ ", getGom()=" + getGom() + ", getSanm()=" + getSanm() + ", getImg()=" + getImg() + ", getTrash()="
+				+ getTrash() + ", getCar_number()=" + getCar_number() + ", getVehicle()=" + getVehicle()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
 
 }

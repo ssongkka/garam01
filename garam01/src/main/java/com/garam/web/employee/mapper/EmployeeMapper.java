@@ -16,4 +16,5 @@ public interface EmployeeMapper {
 
 	public List<EmployeeInfoDTO> selectEmpDetail(EmployeeInfoDTO employeeInfoDTO) throws Exception;
 
+	public int updateEmp(EmployeeInfoDTO employeeInfoDTO) throws Exception;
 }

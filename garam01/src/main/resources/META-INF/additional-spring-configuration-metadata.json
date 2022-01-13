@@ -1,0 +1,52 @@
+{"properties": [
+  {
+    "name": "external.ftp.host",
+    "type": "java.lang.String",
+    "description": "A description for 'external.ftp.host'"
+  },
+  {
+    "name": "ftp.host",
+    "type": "java.lang.String",
+    "description": "A description for 'ftp.host'"
+  },
+  {
+    "name": "ftp.port",
+    "type": "java.lang.String",
+    "description": "A description for 'ftp.port'"
+  },
+  {
+    "name": "ftp.username",
+    "type": "java.lang.String",
+    "description": "A description for 'ftp.username'"
+  },
+  {
+    "name": "ftp.password",
+    "type": "java.lang.String",
+    "description": "A description for 'ftp.password'"
+  },
+  {
+    "name": "ftp.url",
+    "type": "java.lang.String",
+    "description": "A description for 'ftp.url'"
+  },
+  {
+    "name": "ftp.empFolder",
+    "type": "java.lang.String",
+    "description": "A description for 'ftp.empFolder'"
+  },
+  {
+    "name": "ftp.carFolder",
+    "type": "java.lang.String",
+    "description": "A description for 'ftp.carFolder'"
+  },
+  {
+    "name": "ftp.empFolder",
+    "type": "java.lang.String",
+    "description": "A description for 'ftp.empFolder'"
+  },
+  {
+    "name": "ftp.empFolder",
+    "type": "java.lang.String",
+    "description": "A description for 'ftp.empFolder'"
+  }
+]}

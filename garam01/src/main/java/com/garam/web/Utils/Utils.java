@@ -45,4 +45,18 @@ public class Utils {
 
 		return rtn;
 	}
+
+	static public String getFileName(String name, String unique) {
+		String rtn;
+
+		String fileN1 = name.replaceAll("\\\\", ",");
+		String[] fileN2 = fileN1.split(",");
+		String fileN3 = fileN2[fileN2.length - 1];
+		String[] fileN4 = fileN3.split("\\.");
+		String fileN5 = fileN4[fileN4.length - 1];
+
+		rtn = unique + "." + fileN5;
+
+		return rtn;
+	}
 }
