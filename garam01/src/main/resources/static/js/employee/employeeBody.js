@@ -30,6 +30,42 @@ function getEmpAll(name) {
                 htmls += r[i].name;
                 htmls += '</span>'
                 htmls += '</td>'
+                if (r[i].kind) {
+                    htmls += '<td>'
+                    htmls += '<span>'
+                    htmls += r[i].kind;
+                    htmls += '</span>'
+                    htmls += '</td>'
+                } else {
+                    htmls += '<td>'
+                    htmls += '<span>'
+                    htmls += '</span>'
+                    htmls += '</td>'
+                }
+                if (r[i].birthday) {
+                    htmls += '<td>'
+                    htmls += '<span>'
+                    htmls += r[i].birthday;
+                    htmls += '</span>'
+                    htmls += '</td>'
+                } else {
+                    htmls += '<td>'
+                    htmls += '<span>'
+                    htmls += '</span>'
+                    htmls += '</td>'
+                }
+                if (r[i].age) {
+                    htmls += '<td>'
+                    htmls += '<span>'
+                    htmls += r[i].age;
+                    htmls += '</span>'
+                    htmls += '</td>'
+                } else {
+                    htmls += '<td>'
+                    htmls += '<span>'
+                    htmls += '</span>'
+                    htmls += '</td>'
+                }
                 if (r[i].vehicle) {
                     htmls += '<td>'
                     htmls += '<span>'
@@ -406,8 +442,6 @@ function insertEmp(tp) {
                     }
                 })
             }
-
         });
     }
-
 }

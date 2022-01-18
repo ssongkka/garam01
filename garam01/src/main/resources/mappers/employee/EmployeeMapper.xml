@@ -94,13 +94,15 @@
 
 		SELECT
 
-		employeeinfo.id, employeeinfo.name,
+		employeeinfo.id, employeeinfo.name, employeeinfo.birthday,
+		employeeinfo.kind,
 		vehicleinfo.vehicle
 
 		FROM
 		employeeinfo
 
-		LEFT JOIN vehicleinfo
+		LEFT JOIN
+		vehicleinfo
 
 		ON
 		employeeinfo.id =

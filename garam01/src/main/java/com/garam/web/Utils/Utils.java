@@ -59,4 +59,13 @@ public class Utils {
 
 		return rtn;
 	}
+
+	static public String splitVehicle(String vehicle) {
+
+		int nnn = vehicle.length();
+
+		String rtn = vehicle.substring(nnn - 4);
+
+		return rtn;
+	}
 }

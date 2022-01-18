@@ -1,5 +1,7 @@
 package com.garam.web.employee.dto;
 
+import com.garam.web.Utils.Utils;
+
 public class EmployeeInfoDTO {
 
 	// 사원번호
@@ -137,7 +139,7 @@ public class EmployeeInfoDTO {
 	}
 
 	public String getJoindDay() {
-		return joindDay;
+		return Utils.getYearMonth(getJoind());
 	}
 
 	public void setJoindDay(String joindDay) {
@@ -177,7 +179,7 @@ public class EmployeeInfoDTO {
 	}
 
 	public String getAge() {
-		return age;
+		return Utils.getAge(getBirthday());
 	}
 
 	public void setAge(String age) {

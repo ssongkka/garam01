@@ -258,5 +258,24 @@ $(document).on('click', '#goEmp', function () {
     // var w = 800; var h = 900; var xPos = (document.body.offsetWidth) - w; xPos +=
     // window.screenLeft; var yPos = 10;
 
-    window.open('/employee', 'ot');
+    window.open(
+        '/employee',
+        '인사 정보',
+        'ot',
+        'title',
+        'height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes'
+    )
+});
+
+$(document).on('click', '#goVe', function () {
+    // var w = 800; var h = 900; var xPos = (document.body.offsetWidth) - w; xPos +=
+    // window.screenLeft; var yPos = 10;
+
+    window.open(
+        '/vehicle',
+        '차량 정보',
+        'ot',
+        'title',
+        'height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes'
+    );
 });
